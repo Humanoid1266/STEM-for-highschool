@@ -1,4 +1,3 @@
-drop table dangkituyensinh
 CREATE TABLE dangkituyensinh (
     id INT IDENTITY(1,1) PRIMARY KEY, -- ID tự tăng
     parent_name NVARCHAR(100) NOT NULL,
@@ -46,7 +45,6 @@ CREATE TABLE truyenthong (
     uploaded_at DATETIME DEFAULT GETDATE()
 );
 
--- Bảng phản hồi
 CREATE TABLE phanhoi (
     id INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(100) NOT NULL, -- Tên người gửi
