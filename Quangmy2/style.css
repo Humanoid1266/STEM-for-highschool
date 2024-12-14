@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    width: 1700px;
+    height: 100px;
+    background-color: #FF7300;
+}
+
+header img {
+    margin: 20px;
+    width: 150px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+nav {
+    height: 35px;
+    background: #110080;
+}
+
+nav .menu ul li {
+    float: right;
+    line-height: 35px;
+    padding: 0 50px;
+}
+
+nav .menu ul {
+    list-style: none;
+}
+
+nav .menu ul li a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+nav .search {
+    line-height: 35px;
+    text-align: center;
+}
