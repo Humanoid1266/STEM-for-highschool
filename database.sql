@@ -1,71 +1,95 @@
-CREATE TABLE dangkituyensinh (
-    id INT IDENTITY(1,1) PRIMARY KEY, -- ID tự tăng
-    parent_name NVARCHAR(100) NOT NULL,
-    email NVARCHAR(100) NOT NULL,
-    phone NVARCHAR(15) NOT NULL,
-    student_school NVARCHAR(255) NOT NULL,
-    student_birth_year INT NOT NULL,
-    city NVARCHAR(100) NOT NULL,
-    submitted_at DATETIME DEFAULT GETDATE(), -- Thời gian gửi thông tin
-    CONSTRAINT check_email_format CHECK (CHARINDEX('@', email) > 0), -- Kiểm tra email có chứa '@'
-    CONSTRAINT check_phone_format CHECK (LEN(phone) IN (10, 11) AND phone NOT LIKE '%[^0-9]%') -- Kiểm tra số điện thoại hợp lệ
+--Tài liệu công khai
+CREATE TABLE public_resources (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    title NVARCHAR(255) NOT NULL, -- Tiêu đề tài liệu
+    description NVARCHAR(MAX), -- Mô tả tài liệu
+    link NVARCHAR(255) NOT NULL, -- Đường dẫn tài liệu
+    created_at DATETIME DEFAULT GETDATE() -- Ngày thêm tài liệu
 );
 
-CREATE TABLE menu (
+--Sự kiện
+CREATE TABLE events (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    name NVARCHAR(100) NOT NULL, -- Tên mục menu
-    link NVARCHAR(255) NOT NULL, -- Đường dẫn trang
-    parent_id INT NULL, -- ID của mục cha
-    order_index INT NOT NULL -- Thứ tự hiển thị
-);
-
-CREATE TABLE gioithieu (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    title NVARCHAR(255) NOT NULL, -- Tiêu đề
-    content TEXT NOT NULL, -- Nội dung
-    image NVARCHAR(255), -- Hình ảnh
-    created_at DATETIME DEFAULT GETDATE()
-);
-
-CREATE TABLE tintuc (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    title NVARCHAR(255) NOT NULL,
-    content TEXT NOT NULL,
-    image NVARCHAR(255),
-    category NVARCHAR(100), -- Danh mục
-    created_at DATETIME DEFAULT GETDATE()
-);
-
-CREATE TABLE truyenthong (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    media_type NVARCHAR(50) NOT NULL, -- ảnh, video 
-    url NVARCHAR(255) NOT NULL, -- Đường dẫn media
-    description NVARCHAR(255), -- Mô tả
-    related_page NVARCHAR(100), -- Trang liên quan
-    uploaded_at DATETIME DEFAULT GETDATE()
-);
-
-CREATE TABLE phanhoi (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    name NVARCHAR(100) NOT NULL, -- Tên người gửi
-    email NVARCHAR(100),
-    message TEXT NOT NULL, -- Nội dung phản hồi
-    received_at DATETIME DEFAULT GETDATE()
-);
-
-CREATE TABLE sukien (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    title NVARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
+    title NVARCHAR(255) NOT NULL, -- Tên sự kiện
+    description NVARCHAR(MAX), -- Mô tả sự kiện
     event_date DATE NOT NULL, -- Ngày tổ chức
     location NVARCHAR(255), -- Địa điểm
-    created_at DATETIME DEFAULT GETDATE()
+    created_at DATETIME DEFAULT GETDATE() -- Ngày tạo
 );
 
-CREATE TABLE solieunoibat (
+--đăng kí nhận thông tin
+CREATE TABLE subscriptions (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    title NVARCHAR(100) NOT NULL,
-    value INT NOT NULL, -- Giá trị số liệu
-    description NVARCHAR(255),
-    created_at DATETIME DEFAULT GETDATE()
+    email NVARCHAR(100) NOT NULL UNIQUE, -- Email người đăng ký
+    registered_at DATETIME DEFAULT GETDATE() -- Ngày đăng ký
+);
+
+--Học sinh
+CREATE TABLE students (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL, 
+    email NVARCHAR(100) NOT NULL UNIQUE, 
+    password NVARCHAR(255) NOT NULL, 
+    created_at DATETIME DEFAULT GETDATE() -- Ngày tạo tài khoản
+);
+
+--Giáo viên
+CREATE TABLE teachers (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL,
+    email NVARCHAR(100) NOT NULL UNIQUE,
+    password NVARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT GETDATE() -- Ngày tạo tài khoản
+);
+
+--Môn học
+CREATE TABLE courses (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(255) NOT NULL, -- Tên môn học
+    description NVARCHAR(MAX), -- Mô tả môn học
+    created_by INT NOT NULL, -- ID của giáo viên tạo
+    created_at DATETIME DEFAULT GETDATE(), -- Ngày tạo
+    CONSTRAINT fk_teacher_course FOREIGN KEY (created_by) REFERENCES teachers(id)
+);
+
+--Đăng kí môn học
+CREATE TABLE student_courses (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    student_id INT NOT NULL, -- ID của học sinh
+    course_id INT NOT NULL, -- ID của môn học
+    enrolled_at DATETIME DEFAULT GETDATE(), -- Ngày đăng ký
+    CONSTRAINT fk_student FOREIGN KEY (student_id) REFERENCES students(id),
+    CONSTRAINT fk_course FOREIGN KEY (course_id) REFERENCES courses(id)
+);
+
+--Bài tập
+CREATE TABLE assignments (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    course_id INT NOT NULL, -- ID môn học
+    title NVARCHAR(255) NOT NULL, -- Tiêu đề bài tập
+    description NVARCHAR(MAX), -- Mô tả bài tập
+    due_date DATE, -- Ngày hết hạn
+    created_at DATETIME DEFAULT GETDATE(), -- Ngày tạo
+    CONSTRAINT fk_course_assignment FOREIGN KEY (course_id) REFERENCES courses(id)
+);
+
+--Nộp bài tập
+CREATE TABLE submissions (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    assignment_id INT NOT NULL, -- ID bài tập
+    student_id INT NOT NULL, -- ID học sinh
+    submission_link NVARCHAR(255), -- Đường dẫn bài nộp
+    submitted_at DATETIME DEFAULT GETDATE(), -- Thời gian nộp
+    feedback NVARCHAR(MAX), -- Phản hồi từ giáo viên
+    score FLOAT, -- Điểm số
+    CONSTRAINT fk_assignment FOREIGN KEY (assignment_id) REFERENCES assignments(id),
+    CONSTRAINT fk_student_submission FOREIGN KEY (student_id) REFERENCES students(id)
+);
+
+CREATE TABLE admins (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL, -- Tên quản trị viên
+    email NVARCHAR(100) NOT NULL UNIQUE, -- Email
+    password NVARCHAR(255) NOT NULL, -- Mật khẩu
+    created_at DATETIME DEFAULT GETDATE() -- Ngày tạo tài khoản
 );
