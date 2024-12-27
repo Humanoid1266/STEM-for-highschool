@@ -1,0 +1,44 @@
+<!-- app/templates/courses.html -->
+{% extends "home/base.html" %}
+
+{% block title %}Danh Sách Môn Học{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/monhoc.css' %}">
+    <h1 style="text-transform: uppercase; font-size: 36px;text-align: center;background-color:orange;color: white">Danh Sách Môn Học</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+
+                <th>Tên Môn Học</th>
+
+                <th>Tài liệu học tập</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1 </td>
+
+                <td>Toán </td>
+
+                <td>https://vn.search.yahoo.com/search?fr=mcafee&type=E210VN91215G0&p=t%C3%A0i+li%E1%BB%87u+m%C3%B4n+to%C3%A1n</td>
+            </tr>
+            <tr>
+                <td>2 </td>
+
+                <td>Tiếng Anh </td>
+
+                <td>https://vn.search.yahoo.com/search?fr=mcafee&type=E210VN91215G0&p=t%C3%A0i+li%E1%BB%87u+m%C3%B4n+to%C3%A1n</td>
+            </tr>
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.id }}</td>
+                <td>{{ course.name }}</td>
+                <td>{{ course.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
