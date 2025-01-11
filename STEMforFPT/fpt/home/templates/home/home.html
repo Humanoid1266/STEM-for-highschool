@@ -1,0 +1,69 @@
+{% extends "home/base.html" %}
+{% load static %}
+<!--banner_slider-->
+{% block banner_slider %}
+<div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static "styles/images/Banner1.jpg" %}" class="d-block w-100" alt="..." width = 500>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static "styles/images/Banner2.jpg" %}" class="d-block w-100" alt="..." width = 500 >
+      </div>
+      <div class="carousel-item">
+        <img src="{% static "styles/images/Banner3.jpg" %}" class="d-block w-100" alt="..." width = 500 >
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+{% endblock banner_slider %}
+{% block main-content %}
+<div class="container">
+    <div class="row text-center">
+        <!-- Ảnh 1 -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="box-element product">
+                <img class="thumbnail img-fluid" src="{% static 'styles/images/body1.jpg' %}" alt="Ảnh 1">
+                <div class="mt-2">
+                    <a href="#">Vì sao ngày càng nhiều phụ huynh chọn trường nội trú cho con?</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <!-- Ảnh 2 -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="box-element product">
+                <img class="thumbnail img-fluid" src="{% static 'styles/images/body2.png' %}" alt="Ảnh 2">
+                <div class="mt-2">
+                    <a href="#">Khám phá giờ học địa lý thú vị cùng lớp 11B3 tại Trường THPT FPT Hà Nội</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <!-- Ảnh 3 -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="box-element product">
+                <img class="thumbnail img-fluid" src="{% static 'styles/images/body3.jpg' %}" alt="Ảnh 3">
+                <div class="mt-2">
+                    <a href="#">Trường THPT FPT tổ chức thành công hội thảo “Tuổi 15 và trí tuệ cảm xúc trong thời đại số” với sự tham dự của gần 300 quý phụ huynh và học sinh</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

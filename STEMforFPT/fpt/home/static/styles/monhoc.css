@@ -1,0 +1,81 @@
+/* Cấu trúc chung */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: hsl(0, 0%, 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+/* CSS cho bảng môn học */
+table {
+    width: 100%;
+    border-collapse: collapse;  /* Loại bỏ khoảng cách giữa các ô */
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px; /* Thêm khoảng cách bên trong ô */
+    text-align: left; /* Căn trái nội dung */
+    border-bottom: 1px solid #ddd; /* Thêm đường viền dưới cho mỗi ô */
+}
+
+th {
+    background-color: rgb(129, 228, 15); /* Màu nền cho header của bảng */
+    color: white;  /* Màu chữ của header */
+    font-size: 16px;
+}
+
+td {
+    background-color: #e51616; /* Màu nền của các ô dữ liệu */
+}
+
+/* Làm nổi bật khi hover lên hàng trong bảng */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Tạo viền cho bảng */
+table {
+    border: 1px solid #ddd;
+}
+
+/* Đảm bảo chiều rộng của các cột */
+th, td {
+    width: 33%;
+}
+
+/* Thêm khoảng cách cho bảng để dễ nhìn hơn */
+table {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+header nav {
+    background-color: hsl(0, 0%, 0%);
+    color: rgb(153, 49, 132);
+    padding: 10px;
+    text-align: center;
+}
+
+header nav a {
+    color: rgb(255, 255, 255);
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+main {
+    flex-grow: 1; /* Giúp phần main chiếm không gian còn lại */
+}
+
+/* Phần Footer */
+footer {
+    padding: 20px;
+    background-color: rgb(250, 141, 8);
+    color: rgb(247, 247, 247);
+}
+
+
