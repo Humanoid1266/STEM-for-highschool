@@ -37,32 +37,32 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+                    <a class="nav-link active" aria-current="page" href="{% url "home" %}">Trang chủ</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Giới thiệu
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Tập đoàn FPT</a></li>
-                      <li><a class="dropdown-item" href="#">Lịch sử thành lập</a></li>
-                      <li><a class="dropdown-item" href="#">Hệ thống phổ thông FPT</a></li>
+                      <li><a class="dropdown-item" href="{% url "tapdoan" %}">Tập đoàn FPT</a></li>
+                      <li><a class="dropdown-item" href="{% url "lichsu" %}">Lịch sử thành lập</a></li>
+                      <li><a class="dropdown-item" href="{% url "hethongfpt" %}">Hệ thống phổ thông FPT</a></li>
                     </ul>
                   </li>
                    <li class="nav-item">
-                    <a class="nav-link" href="#">Chương trình đào tạo</a>
+                    <a class="nav-link" href="{% url "chuongtrinhdaotao" %}">Chương trình đào tạo</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Tài liệu học tập
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Môn học</a></li>
-                      <li><a class="dropdown-item" href="#">Phần mềm và công cụ học tập:</a></li>
+                      <li><a class="dropdown-item" href="{% url "monhoc" %}">Môn học</a></li>
+                      <li><a class="dropdown-item" href="{% url "congcuhoctap" %}">Phần mềm và công cụ học tập:</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link " href="#">Liên hệ</a>
+                    <a class="nav-link " href="{% url "lienhe" %}">Liên hệ</a>
                   </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -92,6 +92,7 @@
         <!--Main body-->
         {% block banner_slider %}{% endblock banner_slider %}
         {% block main-content %}{% endblock main-content %}
+        {% block tapdoan_content %}{% endblock tapdoan_content %}
         <!--Footer-->
         <footer class="container--fluid text-left fixed-bottom p-2 mt-5" style="background-color: #FF8300; color: white;">
           &copy; 2024 FPT University
