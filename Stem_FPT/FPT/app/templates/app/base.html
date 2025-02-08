@@ -12,6 +12,9 @@
         <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
 
         <link rel="stylesheet" type="text/css" href="{% static 'app/css/main.css' %}">
+   
+      
+      
         <!--js-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -58,7 +61,8 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="{% url "monhoc" %}">Môn học</a></li>
-                      <li><a class="dropdown-item" href="{% url "congcuhoctap" %}">Phần mềm và công cụ học tập:</a></li>
+                      <li><a class="dropdown-item" href="{% url "congcuhoctap" %}">Phần mềm và công cụ học tập</a></li>
+                      <li><a class="dropdown-item" href="{% url "diendan" %}">Diễn đàn thảo luận</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
@@ -81,10 +85,10 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Đăng nhập</a>
+                  <a class="nav-link active" href="{% url "dangnhap" %}">Đăng nhập</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Đăng ký</a>
+                  <a class="nav-link active" href="{% url "dangky" %}">Đăng ký</a>
                 </li>
               </ul>
             </div>
@@ -95,6 +99,13 @@
         {% block tapdoan_content %}{% endblock tapdoan_content %}
         {% block lichsu_content %}{% endblock lichsu_content %}
         {% block hethongfpt_content %}{% endblock hethongfpt_content %}
+        {% block chuongtrinhdaotao_content %}{% endblock chuongtrinhdaotao_content %}
+        {% block monhoc_content %}{% endblock monhoc_content %}
+        {% block congcuhoctap_content %}{% endblock congcuhoctap_content %}
+        {% block lienhe_content %}{% endblock lienhe_content %}
+        {% block diendan_content %} {%endblock diendan_content%}
+        {% block dangnhap_content %} {%endblock dangnhap_content%}
+        {% block dangky_content %}{% endblock dangky_content %}
         <!--Footer-->
         <footer class="container--fluid text-left fixed-bottom p-2 mt-5" style="background-color: #FF8300; color: white;">
           &copy; 2024 FPT University

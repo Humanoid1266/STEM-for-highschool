@@ -1,24 +1,110 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block hethongfpt_content %}
-     
+
+<head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+    }
+    .header {
+        text-align: center;
+        padding: 40px;
+        color: white;
+    }
+    .header img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    .header h2 {
+        margin-top: 20px;
+        font-size: 32px;
+        
+        font-weight: bold;
+    }
+    .content {
+        padding: 40px;
+        background-color: white;
+        margin: 40px auto;
+        max-width: 1200px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .content p {
+        line-height: 1.8;
+        color: #333;
+        font-size: 16px;
+    }
+    .content h4 {
+        margin-top: 30px;
+        font-size: 20px;
+        color: black
+        font-weight: bold;
+    }
+    .content ul {
+        list-style-type: none;
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+    .content ul li {
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+    .values_title {
+        font-size: 16px;
+        color: #555;
+        padding-left: 10px;
+    }
+    .values_title strong {
+        color: black;
+    }
+</style>
 </head>
+
 <body>
 
 <div class="header">
-    <img src="{% static "app/images/hethongfpt.png" %}" alt="Background Image">
-    <h1>HỆ THỐNG PHỔ THÔNG FPT</h1>
+    <img src="{% static 'app/images/hethongfpt.png' %}" alt="Hệ thống Phổ thông FPT">
+    <h2>HỆ THỐNG PHỔ THÔNG FPT</h2>
 </div>
 
 <div class="content">
-    <h2>HỆ THỐNG PHỔ THÔNG FPT</h2>
     <p>
-        Thành lập vào năm 2013, Hệ thống Phổ thông FPT (FPT Schools) trực thuộc Tổ chức Giáo dục FPT, 
-        là hệ thống giáo dục chất lượng cao gồm 3 cấp Tiểu học, Trung học cơ sở và Trung học phổ thông.
+        Thành lập vào năm 2013, Hệ thống Phổ thông FPT (FPT Schools) trực thuộc Tổ chức Giáo dục FPT, là hệ thống giáo dục chất lượng cao gồm 3 cấp Tiểu học, Trung học cơ sở và Trung học phổ thông với nhiều cơ sở tại các tỉnh thành trên toàn quốc.
     </p>
+    <h4><strong>Triết lý hành động:</strong></h4>
+    <ul>
+        <li>Làm khác để làm tốt.</li>
+        <li>Giáo dục là tổ chức và quản trị việc “tự học” của người học.</li>
+        <li>Nhà trường tạo lập môi trường trải nghiệm và cuộc sống học trò phong phú, để mỗi ngày đến trường của học sinh là một ngày vui.</li>
+        <li>Nhà trường phải là nơi vừa “dạy”, vừa “dỗ”, để ai cũng có thể học được.</li>
+        <li>Lấy người học làm trung tâm.</li>
+    </ul>
+    <h4><strong>05 giá trị cốt lõi của học sinh FPT Schools:</strong></h4>
+    <ul>
+        <li>
+            <div class="values_title"><strong>CÔNG NGHỆ:</strong> Có hiểu biết về các công nghệ mới; biết ứng dụng công nghệ cơ bản vào hoạt động sinh hoạt và học tập hàng ngày; có xu hướng tìm hiểu và cập nhật các công nghệ mới nhất xuất hiện trên thế giới.</div>
+        </li>
+        <li>
+            <div class="values_title"><strong>TỰ LẬP:</strong> Chủ động và tích cực trong suy nghĩ và hành động nhằm hướng tới việc xây dựng và thực hiện việc học, lao động và ứng xử tích cực, từng bước trưởng thành dựa vào chính năng lực và ý chí của bản thân.</div>
+        </li>
+        <li>
+            <div class="values_title"><strong>SÁNG TẠO:</strong> Có ý thức về việc luôn tìm ra cách làm mới, hay và hiệu quả hơn, đồng thời biết phương pháp để suy nghĩ sáng tạo, và triển khai các hoạt động sáng tạo.</div>
+        </li>
+        <li>
+            <div class="values_title"><strong>TRẢI NGHIỆM:</strong> Tiếp cận thực tế, huy động kiến thức, kĩ năng để thực hiện những nhiệm vụ được giao hoặc giải quyết vấn đề, qua đó chuyển hoá những kinh nghiệm đã trải qua thành tri thức, kĩ năng mới.</div>
+        </li>
+        <li>
+            <div class="values_title"><strong>TÔN TRỌNG CÁ NHÂN:</strong> Đánh giá đúng mực, coi trọng danh dự, lợi ích và phẩm giá của người khác, tôn trọng sự khác biệt của mỗi người.</div>
+        </li>
+    </ul>   
 </div>
+<p>&nbsp;</p>
 
 </body>
-
 
 {% endblock hethongfpt_content %}

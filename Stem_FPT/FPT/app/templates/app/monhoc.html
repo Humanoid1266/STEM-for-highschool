@@ -1,5 +1,96 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block monhoc_content %}
+<h1 style="text-transform: uppercase; font-size: 36px; text-align: center; background-color: orange; color: white; padding: 20px;">
+    Danh Sách Môn Học
+</h1>
+
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Tên Môn Học</th>
+                <th>Tài liệu học tập</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Toán</td>
+                <td><a href="https://toanmath.com/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Toán Học</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Lý</td>
+                <td><a href="https://thuvienhoclieu.com/tai-lieu-vat-li/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Vật Lý</a></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Hóa</td>
+                <td><a href="https://thuvienhoclieu.com/tai-lieu-hoa-hoc/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Hóa Học</a></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Văn</td>
+                <td><a href="https://thuvienhoclieu.com/tai-lieu-ngu-van/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Văn Học</a></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Tiếng Anh</td>
+                <td><a href="https://thuvienhoclieu.com/tai-lieu-tieng-anh/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Ngoại Ngữ</a></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Sử</td>
+                <td><a href="https://thuvienhoclieu.com/tai-lieu-lich-su/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Lịch Sử</a></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Địa</td>
+                <td><a href="https://tailieuonthi.org/pdf-sach-tong-on-dia-ly-tap-1-co-phuong-dung/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Địa Lý</a></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Giáo dục Công dân</td>
+                <td><a href="https://thuvienhoclieu.com/tai-lieu-cong-dan/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Giáo Dục Công Dân</a></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Sinh học</td>
+                <td><a href="https://tailieusinh.com/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Sinh Học</a></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Công nghệ</td>
+                <td><a href="https://thuvienhoclieu.com/tai-lieu-cong-nghe/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Công nghệ</a></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Tin học</td>
+                <td><a href="https://tailieuhust.com/tai-lieu-mon-tin-hoc-dai-cuong-hust/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Tin Học</a></td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Giáo dục Quốc phòng</td>
+                <td><a href="https://dsec.tdtu.edu.vn/tin-tuc/2021/giao-trinh-giao-duc-quoc-phong-va-an-ninh-hoc-phan-1" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Giáo Dục Quốc Phòng</a></td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Thể dục</td>
+                <td><a href="https://thuvienhoclieu.com/tai-lieu-the-duc/" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Thể dục</a></td>
+            </tr>
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.id }}</td>
+                <td>{{ course.name }}</td>
+                <td><a href="{{ course.description }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-book"></i> Tài liệu</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 {% endblock monhoc_content %}

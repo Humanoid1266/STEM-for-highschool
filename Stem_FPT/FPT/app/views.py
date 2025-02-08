@@ -31,3 +31,15 @@ def monhoc(request):
 def lienhe(request):
     context= {}
     return render(request, 'app/lienhe.html',context)
+
+def diendan(request):
+    context= {}
+    return render(request, 'app/diendan.html',context)
+
+def dangnhap(request):
+    context= {}
+    return render(request, 'app/dangnhap.html',context)
+
+def dangky(request):
+    context= {}
+    return render(request, 'app/dangky.html',context)

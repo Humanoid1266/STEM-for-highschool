@@ -11,4 +11,8 @@ urlpatterns = [
     path('congcuhoctap/', views.congcuhoctap, name='congcuhoctap'),
     path('monhoc/', views.monhoc, name='monhoc'),
     path('lienhe/', views.lienhe, name='lienhe'),
+    path('diendan/', views.diendan, name='diendan'),
+    path('dangnhap/', views.dangnhap, name='dangnhap'),
+    path('dangky/', views.dangky, name='dangky'),
+
 ]
