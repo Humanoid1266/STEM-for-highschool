@@ -1,0 +1,64 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block tapdoan_content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-transform: uppercase;
+            font-size: 24px;
+            text-align: center;
+            background-color: orange;
+            color: white;
+            padding: 30px 20px;
+        }
+        .header img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .content {
+            text-align: center;
+            padding: 20px 10px;
+        }
+        .content h1 {
+            font-size: 36px;
+            background-color: orange;
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .content img {
+            max-width: 80%;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        Hoạt động trong 3 lĩnh vực kinh doanh cốt lõi gồm Công nghệ, Viễn thông, Giáo dục với 08 Công ty thành viên trực thuộc và 2 công ty liên kết trực tiếp.
+    </div>
+
+    <div class="content">
+        <h1>
+            <div style="font-size: 18px; padding: 10px;">
+                <img src="{% static "app/images/tapdoan1.png" %}" alt="Image 1">
+            </div>
+        </h1>
+        
+        <h1>
+            <div style="font-size: 18px; padding: 10px;">
+                <img src="{% static "app/images/tapdoan2.png" %}" alt="Image 2">
+            </div>
+        </h1>
+    </div>
+
+</body>
+
+{% endblock tapdoan_content %}

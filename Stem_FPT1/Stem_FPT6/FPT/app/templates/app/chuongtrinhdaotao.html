@@ -1,0 +1,121 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block chuongtrinhdaotao_content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .header {
+            background-color: #f5a623;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .section img {
+            max-width: 250px;
+            margin-right: 30px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .section div {
+            flex: 1;
+        }
+        .section h3 {
+            margin: 0 0 15px;
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+        .section p {
+            margin: 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .section img {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+
+    <div class="header">
+        <h1>CHƯƠNG TRÌNH ĐÀO TẠO</h1>
+    </div>
+
+    <div class="container">
+        <!-- Chương trình chính khóa -->
+        <div class="section">
+            <img src="{% static 'app/images/ctdt1.jpg' %}" alt="Chương trình chính khóa">
+            <div>
+                <h3>CHƯƠNG TRÌNH CHÍNH KHÓA</h3>
+                <p>Chương trình đào tạo tại trường THPT FPT được thiết kế nhằm phát triển toàn diện, giúp học sinh nắm vững kiến thức, bồi dưỡng kỹ năng và biết cách giải quyết vấn đề. Song song với chương trình văn hoá theo chuẩn của Bộ Giáo dục và Đào tạo, trường THPT FPT còn chú trọng tăng cường các chương trình đào tạo khác biệt bao gồm: Chương trình ngoại ngữ theo giáo trình Insight từ Nhà xuất bản Oxford; STEM, Tin học và Công nghệ 4.0; Việt Võ Đạo.</p>
+            </div>
+        </div>
+
+        <!-- Chương trình tiếng Anh -->
+        <div class="section">
+            <img src="{% static 'app/images/ctdt2.jpg' %}" alt="Chương trình tiếng Anh">
+            <div>
+                <h3>CHƯƠNG TRÌNH TIẾNG ANH</h3>
+                <p>Ngoài chương trình học theo chuẩn Bộ GD&ĐT, học sinh THPT FPT được trang bị thêm chương trình Tiếng Anh chuyên biệt theo giáo trình Insight từ Nhà xuất bản Oxford. Giáo trình Insight nhằm phát triển toàn diện các kỹ năng và đa dạng hoá các hoạt động học tập ngôn ngữ đồng thời tạo điều kiện để học sinh trực tiếp trải nghiệm các bài kiểm tra, đánh giá năng lực ngôn ngữ, củng cố nền tảng vững chắc, tiếp cận với các bài thi chuẩn hoá ngôn ngữ như IELTS, SAT, TOEFL.</p>
+            </div>
+        </div>
+
+        <!-- Chương trình STEM -->
+        <div class="section">
+            <img src="{% static 'app/images/ctdt3.jpg' %}" alt="Chương trình STEM">
+            <div>
+                <h3>CHƯƠNG TRÌNH STEM, TIN HỌC VÀ CÔNG NGHỆ 4.0</h3>
+                <p>STEM, Tin học và Công nghệ 4.0 được triển khai trong suốt quá trình giảng dạy tại trường THPT FPT. 100% học sinh sử dụng laptop, các ứng dụng hiện đại và thường xuyên được tham gia các sân chơi, quy mô trong và ngoài nước. Từ đó giúp học sinh am hiểu công nghệ và áp dụng các kiến thức đã học vào thực tiễn.</p>
+            </div>
+        </div>
+
+        <!-- Chương trình giáo dục thể chất -->
+        <div class="section">
+            <img src="{% static 'app/images/ctdt4.jpg' %}" alt="Chương trình giáo dục thể chất">
+            <div>
+                <h3>CHƯƠNG TRÌNH GIÁO DỤC THỂ CHẤT</h3>
+                <p>Học sinh THPT FPT được học bộ môn võ Vovinam (Việt Võ Đạo) nhằm nâng cao thể chất, rèn luyện tác phong kỷ luật, ý chí phấn đấu. Đồng thời giúp học sinh thấm nhuần tinh thần tự tôn dân tộc, lan toả bản sắc Việt Nam. Bên cạnh việc rèn luyện thể chất, học sinh còn được lĩnh hội tinh thần thượng võ, tôn sư trọng đạo, rèn luyện tác phong kỷ luật, tôi luyện tinh thần vững vàng trước mọi khó khăn, thử thách.</p>
+            </div>
+        </div>
+
+        <!-- Chương trình phát triển cá nhân -->
+        <div class="section">
+            <img src="{% static 'app/images/ctdt5.jpg' %}" alt="Chương trình phát triển cá nhân">
+            <div>
+                <h3>CHƯƠNG TRÌNH PHÁT TRIỂN CÁ NHÂN (PDP)</h3>
+                <p>Chương trình phát triển cá nhân (PDP) mang đến cho học sinh cơ hội tham gia các hoạt động trải nghiệm học tập và hướng nghiệp. Nhà trường thường xuyên tổ chức các buổi hội thảo chuyên đề, các buổi trò chuyện với chuyên gia, các dự án học tập cộng đồng, hoạt động tham quan, giao lưu văn hoá... nhằm giúp học sinh phát triển toàn diện và định hướng nghề nghiệp rõ ràng.</p>
+            </div>
+        </div>
+    </div>
+{% endblock chuongtrinhdaotao_content %}

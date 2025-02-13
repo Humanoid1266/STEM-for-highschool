@@ -1,0 +1,173 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thế Mạnh Đào Tạo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        padding-top: 60px; /* Thêm khoảng đệm cho nội dung không bị che khuất bởi header */
+      }
+
+      header {
+        background-color: #ff7700;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        position: fixed; /* Cố định header ở trên cùng */
+        top: 0; /* Đặt vị trí của header ở trên cùng */
+        width: 100%; /* Đảm bảo header chiếm toàn bộ chiều rộng */
+        z-index: 1000; /* Đảm bảo header nằm trên cùng của các phần tử khác */
+      }
+
+      h1 {
+        font-size: 20px;
+        margin: 0;
+      }
+
+      section {
+        padding: 20px;
+        margin: 10px;
+      }
+
+      /* Bố trí Flexbox để ảnh và chữ so le */
+      .content {
+        display: flex;
+        flex-direction: row; /* Mặc định ảnh bên trái, chữ bên phải */
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .content img {
+        width: 45%; /* Đặt chiều rộng của ảnh */
+        height: auto;
+      }
+
+      .content-text {
+        width: 50%; /* Đặt chiều rộng của chữ */
+        padding: 10px;
+      }
+
+      .content-text h2 {
+        color: #ff7700;
+        font-size: 24px;
+      }
+
+      .content-text p {
+        font-size: 16px;
+        color: #666;
+      }
+
+      /* Phần so le ảnh và chữ */
+      .content:nth-child(even) {
+        flex-direction: row-reverse; /* Đổi vị trí ảnh và chữ khi là phần thứ chẵn */
+      }
+
+      @media (max-width: 768px) {
+        .content {
+          flex-direction: column; /* Khi màn hình nhỏ, ảnh và chữ sẽ xếp dọc */
+        }
+
+        .content-text {
+          width: 100%;
+          padding: 10px 0;
+        }
+
+        .content img {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Thế Mạnh Đào Tạo</h1>
+    </header>
+
+    <section class="content">
+      <img
+        src="{% static 'app/images/ctdt1.jpg' %}"
+        alt="Ảnh minh họa chương trình đào tạo"
+      />
+      <div class="content-text">
+        <h2>TIẾNG ANH</h2>
+        <p>
+          Chương trình Tiếng Anh tại Trường THPT FPT được thiết kế theo giáo
+          trình Insight từ Nhà xuất bản Oxford, giúp học sinh phát triển toàn
+          diện các kỹ năng ngôn ngữ và chuẩn bị cho các kỳ thi quốc tế như
+          IELTS, TOEFL.
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <img
+        src="{% static 'app/images/STEM.png ' %}"
+        alt="Ảnh minh họa chương trình đào tạo"
+      />
+      <div class="content-text">
+        <h2>STEM, TIN HỌC VÀ CÔNG NGHỆ 4.0</h2>
+        <p>
+          Trường THPT FPT triển khai chương trình STEM và Tin học, giúp học sinh
+          tiếp cận với các công nghệ mới nhất, phát triển kỹ năng lập trình và
+          tham gia các dự án thực tế, từ đó áp dụng kiến thức vào thực tiễn.
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <img
+        src="{% static 'app/images/ctdt2.jpg' %}"
+        alt="Ảnh minh họa chương trình đào tạo"
+      />
+      <div class="content-text">
+        <h2>CHƯƠNG TRÌNH PHÁT TRIỂN CÁ NHÂN (PDP)</h2>
+        <p>
+          Chương trình PDP tại Trường THPT FPT mang đến cho học sinh cơ hội tham
+          gia các hoạt động trải nghiệm học tập và hướng nghiệp, bao gồm hội
+          thảo chuyên đề, trò chuyện với chuyên gia, dự án học tập cộng đồng và
+          hoạt động giao lưu văn hóa.
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <img
+        src="{% static 'app/images/ctdt3.jpg' %}"
+        alt="Ảnh minh họa chương trình đào tạo"
+      />
+      <div class="content-text">
+        <h2>CHƯƠNG TRÌNH TRẢI NGHIỆM THẾ GIỚI THÔNG MINH</h2>
+        <p>
+          Chương trình này giúp học sinh trải nghiệm các công nghệ tiên tiến như
+          Internet of Things (IoT), trí tuệ nhân tạo (AI) và các thiết bị thông
+          minh trong đời sống, từ đó phát triển tư duy sáng tạo và kỹ năng giải
+          quyết vấn đề.
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <img
+        src="{% static 'app/images/ctdt4.jpg' %}"
+        alt="Ảnh minh họa chương trình đào tạo"
+      />
+      <div class="content-text">
+        <h2>VOVINAM - THỂ THAO HỌC ĐƯỜNG</h2>
+        <p>
+          Học sinh Trường THPT FPT được học bộ môn võ Vovinam (Việt Võ Đạo) nhằm
+          nâng cao thể chất, rèn luyện tác phong kỷ luật và ý chí phấn đấu, đồng
+          thời thấm nhuần tinh thần tự tôn dân tộc và lan tỏa bản sắc Việt Nam.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

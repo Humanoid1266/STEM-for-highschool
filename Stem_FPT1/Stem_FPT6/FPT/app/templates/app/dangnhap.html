@@ -1,0 +1,196 @@
+{% load static %} {% block dangnhap_content %}
+
+<style>
+  /* Thiết lập chung cho trang */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #fff; /* Nền trắng */
+  }
+
+  /* Thanh công cụ */
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ff7700;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 10;
+  }
+
+  /* Giảm kích thước logo */
+  header img {
+    width: 100px; /* Giảm kích thước logo */
+    height: auto;
+  }
+
+  /* Container form đăng nhập */
+  .login-container {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid #ff7700; /* Khung màu cam */
+  }
+
+  /* Tiêu đề */
+  .login-container .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff7700;
+    margin-bottom: 20px;
+  }
+
+  .login-container h1 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  /* Nhãn và input */
+  .login-container label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  .login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  /* Nút đăng nhập */
+  .login-container button {
+    width: 100%;
+    padding: 12px;
+    background: #ff7700;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .login-container button:hover {
+    background: #e56700;
+  }
+
+  /* Link đăng ký và quên mật khẩu */
+  .login-container .signup-link,
+  .login-container .forgot-password {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .login-container .signup-link a,
+  .login-container .forgot-password a {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .login-container .signup-link a:hover,
+  .login-container .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  .home-link {
+    position: absolute;
+    top: 110px; /* Điều chỉnh vị trí xuống dưới logo */
+    left: 0; /* Sát mép trái của trang web */
+    width: 120px; /* Độ rộng phù hợp */
+    background-color: #ff7700; /* Màu giống thanh taskbar */
+    padding: 8px 0;
+    border-radius: 0 5px 5px 0; /* Bo tròn bên phải để đẹp hơn */
+    text-align: center;
+  }
+
+  .home-button {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+
+  .home-button:hover {
+    background-color: #e65c00;
+  }
+</style>
+
+<!-- Thanh công cụ -->
+<header>
+  <img src="{% static 'app/images/FPT.png' %}" alt="Logo FPT" />
+</header>
+
+<!-- Container form đăng nhập -->
+<div class="login-container">
+  <div class="logo">FPT Education</div>
+  <div class="home-link">
+    <a href="{% url 'home' %}" class="home-button">Trang Chủ</a>
+  </div>
+  <h1>Đăng Nhập</h1>
+
+  <!-- Hiển thị thông báo lỗi nếu có -->
+  {% if messages %}
+  <div
+    class="alert alert-danger"
+    style="color: red; font-size: 14px; text-align: center"
+  >
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <label for="username">Tên đăng nhập</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Nhập tên đăng nhập"
+      required
+    />
+
+    <label for="password">Mật khẩu</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Nhập mật khẩu"
+      required
+    />
+
+    <button type="submit">Đăng Nhập</button>
+  </form>
+
+  <!-- Các link hỗ trợ -->
+  <div class="forgot-password">
+    <a href="{% url 'khoiphucmatkhau' %}">Quên mật khẩu?</a>
+  </div>
+</div>
+
+{% endblock dangnhap_content %}

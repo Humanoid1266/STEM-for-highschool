@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diễn Đàn Thảo Luận Khoa Học</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      header {
+        background-color: #ff7f00;
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+      }
+      nav {
+        background-color: #ff9f33;
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+      }
+      nav a:hover {
+        background-color: #e67e22;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .category,
+      .contact-info {
+        margin-bottom: 20px;
+        display: none;
+      }
+      .category h2,
+      .contact-info h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+      .category ul,
+      .contact-info ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .category li {
+        background-color: #ffedcc;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+      }
+      .category li a,
+      .contact-info a {
+        text-decoration: none;
+        color: #333;
+      }
+      .search-bar {
+        display: flex;
+        margin-bottom: 20px;
+      }
+      .search-bar input {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .intro {
+        background-color: #fff;
+        padding: 15px;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+      }
+      .intro h2 {
+        font-size: 1.6em;
+        margin-bottom: 10px;
+      }
+      .contact-link {
+        color: #ff7f00;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .footer {
+        background-color: #ff7f00;
+        color: white;
+        text-align: center;
+        padding: 5px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Diễn Đàn Thảo Luận Khoa Học</h1>
+      <p>Chào mừng đến với cộng đồng thảo luận khoa học!</p>
+    </header>
+
+    <nav>
+      <a href="{% url 'diendan' %}">Trang Chủ</a>
+      <a href="#intro">Giới Thiệu</a>
+      <a href="#categories" onclick="toggleCategories()">Chuyên Mục</a>
+      <a href="#contact" onclick="toggleContactInfo()">Liên Hệ</a>
+    </nav>
+
+    <div class="container">
+      <!-- Phần giới thiệu -->
+      <div id="intro" class="intro">
+        <h2>Giới Thiệu</h2>
+        <p>
+          Máy lọc nước từ nguyên liệu tự nhiên đang trở thành một giải pháp bền
+          vững và thân thiện với môi trường trong việc xử lý nước uống. Sử dụng
+          các vật liệu tự nhiên như cát, than hoạt tính, đá ong, vỏ trấu, hoặc
+          than tre để lọc sạch nước, các máy lọc này không chỉ hiệu quả mà còn
+          không gây hại cho sức khỏe. Đặc biệt, chúng đang được nghiên cứu và
+          ứng dụng nhiều trong việc phát triển các hệ thống lọc nước ở vùng nông
+          thôn và khu vực thiếu nước sạch.
+        </p>
+      </div>
+
+      <!-- Các chuyên mục -->
+      <div id="categories" class="category">
+        <h2>Máy Lọc Nước Nguyên Liệu Tự Nhiên</h2>
+        <ul>
+          <li>
+            <a href="#"
+              >Các loại nguyên liệu tự nhiên dùng trong máy lọc nước</a
+            >
+          </li>
+          <li><a href="#">Cách thức hoạt động của máy lọc nước tự nhiên</a></li>
+          <li><a href="#">Ưu và nhược điểm của máy lọc nước tự nhiên</a></li>
+          <li>
+            <a href="#"
+              >Ứng dụng máy lọc nước nguyên liệu tự nhiên trong đời sống</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              >Sự phát triển và tương lai của công nghệ lọc nước tự nhiên</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Phần liên hệ -->
+      <div id="contact" class="contact-info">
+        <h2>Liên Hệ</h2>
+        <p>
+          Để liên hệ với chúng tôi, bạn có thể sử dụng đường link Zalo dưới đây:
+        </p>
+        <a
+          href="https://zalo.me/your-zalo-id"
+          class="contact-link"
+          target="_blank"
+        >
+          <strong>Liên hệ qua Zalo</strong>
+        </a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        &copy; 2025 Diễn Đàn Thảo Luận Khoa Học - Tất cả các quyền được bảo vệ
+      </p>
+    </footer>
+
+    <script>
+      // Toggle hiển thị chuyên mục
+      function toggleCategories() {
+        const categories = document.getElementById("categories");
+        categories.style.display =
+          categories.style.display === "block" ? "none" : "block";
+      }
+
+      // Toggle hiển thị liên hệ
+      function toggleContactInfo() {
+        const contactInfo = document.getElementById("contact");
+        contactInfo.style.display =
+          contactInfo.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </body>
+</html>

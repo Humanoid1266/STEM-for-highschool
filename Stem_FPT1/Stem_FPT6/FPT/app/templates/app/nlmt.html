@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diễn Đàn Thảo Luận Khoa Học</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      header {
+        background-color: #ff7f00; /* Màu cam */
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+      }
+      nav {
+        background-color: #ff9f33; /* Màu cam nhạt hơn */
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+      }
+      nav a:hover {
+        background-color: #e67e22; /* Màu cam đậm hơn */
+      }
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .category,
+      .contact-info {
+        margin-bottom: 20px;
+        display: none; /* Ẩn các chuyên mục và liên hệ mặc định */
+      }
+      .category h2,
+      .contact-info h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        cursor: pointer; /* Con trỏ khi hover vào */
+      }
+      .category ul,
+      .contact-info ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .category li {
+        background-color: #ffedcc; /* Màu nền nhẹ cho mỗi chủ đề */
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+      }
+      .category li a,
+      .contact-info a {
+        text-decoration: none;
+        color: #333;
+      }
+      .search-bar {
+        display: flex;
+        margin-bottom: 20px;
+      }
+      .search-bar input {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .intro {
+        background-color: #fff;
+        padding: 15px;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+      }
+      .intro h2 {
+        font-size: 1.6em;
+        margin-bottom: 10px;
+      }
+      .contact-link {
+        color: #ff7f00;
+        text-decoration: none;
+        font-weight: bold; /* In đậm chữ Zalo */
+      }
+      .footer {
+        background-color: #ff7f00; /* Màu cam */
+        color: white;
+        text-align: center;
+        padding: 5px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Diễn Đàn Thảo Luận Khoa Học</h1>
+      <p>Chào mừng đến với cộng đồng thảo luận khoa học!</p>
+    </header>
+
+    <nav>
+      <a href="{% url 'diendan' %}">Trang Chủ</a>
+      <a href="#intro">Giới Thiệu</a>
+      <a href="#categories" onclick="toggleCategories()">Chuyên Mục</a>
+      <a href="#contact" onclick="toggleContactInfo()">Liên Hệ</a>
+    </nav>
+
+    <div class="container">
+      <!-- Phần giới thiệu -->
+      <div id="intro" class="intro">
+        <h2>Giới Thiệu</h2>
+        <p>
+          Diễn đàn thảo luận khoa học là nơi chia sẻ các thông tin nghiên cứu và
+          các tiến bộ trong các lĩnh vực khoa học đa dạng, từ năng lượng tái tạo
+          cho đến công nghệ tiên tiến. Một trong những lĩnh vực đang được chú
+          trọng hiện nay là năng lượng mặt trời, đặc biệt là các máy phát điện
+          năng lượng mặt trời. Công nghệ này mang lại một giải pháp bền vững và
+          thân thiện với môi trường, giúp giảm thiểu sự phụ thuộc vào năng lượng
+          hóa thạch.
+        </p>
+        <p>
+          Các máy phát điện năng lượng mặt trời đang trở thành lựa chọn phổ biến
+          trên toàn thế giới nhờ vào khả năng khai thác năng lượng từ ánh sáng
+          mặt trời để sản xuất điện. Điều này giúp giảm thiểu chi phí điện năng,
+          đồng thời bảo vệ môi trường khỏi ô nhiễm và biến đổi khí hậu. Diễn đàn
+          sẽ cung cấp những thông tin cập nhật về các loại máy phát điện năng
+          lượng mặt trời, cùng những ứng dụng trong thực tế và nghiên cứu liên
+          quan.
+        </p>
+      </div>
+
+      <!-- Các chuyên mục - Máy Phát Điện Năng Lượng Mặt Trời -->
+      <div id="categories" class="category">
+        <h2>Máy Phát Điện Năng Lượng Mặt Trời</h2>
+        <ul>
+          <li>
+            <a href="#"
+              >Công nghệ và nguyên lý hoạt động của máy phát điện năng lượng mặt
+              trời</a
+            >
+          </li>
+          <li>
+            <a href="#">Các loại máy phát điện năng lượng mặt trời phổ biến</a>
+          </li>
+          <li>
+            <a href="#"
+              >Tính toán hiệu suất và tiết kiệm chi phí từ năng lượng mặt
+              trời</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              >Tương lai của năng lượng mặt trời và các tiến bộ trong công
+              nghệ</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              >Ứng dụng của máy phát điện năng lượng mặt trời trong đời sống và
+              công nghiệp</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Phần liên hệ -->
+      <div id="contact" class="contact-info">
+        <h2>Liên Hệ</h2>
+        <p>
+          Để liên hệ với chúng tôi, bạn có thể sử dụng đường link Zalo dưới đây:
+        </p>
+        <a
+          href="https://zalo.me/your-zalo-id"
+          class="contact-link"
+          target="_blank"
+          ><strong>Liên hệ qua Zalo</strong></a
+        >
+      </div>
+    </div>
+
+    <!-- Phần footer -->
+    <footer class="footer">
+      <p>
+        &copy; 2025 Diễn Đàn Thảo Luận Khoa Học - Tất cả các quyền được bảo vệ
+      </p>
+    </footer>
+
+    <script>
+      // Toggle hiển thị chuyên mục
+      function toggleCategories() {
+        const categories = document.getElementById("categories");
+        categories.style.display =
+          categories.style.display === "block" ? "none" : "block";
+      }
+
+      // Toggle hiển thị liên hệ
+      function toggleContactInfo() {
+        const contactInfo = document.getElementById("contact");
+        contactInfo.style.display =
+          contactInfo.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </body>
+</html>

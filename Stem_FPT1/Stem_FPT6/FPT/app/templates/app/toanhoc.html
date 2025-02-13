@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diễn Đàn Thảo Luận Khoa Học</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      header {
+        background-color: #ff7f00; /* Màu cam */
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+      }
+      nav {
+        background-color: #ff9f33; /* Màu cam nhạt hơn */
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+      }
+      nav a:hover {
+        background-color: #e67e22; /* Màu cam đậm hơn */
+      }
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .category,
+      .contact-info {
+        margin-bottom: 20px;
+        display: none; /* Ẩn các chuyên mục và liên hệ mặc định */
+      }
+      .category h2,
+      .contact-info h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        cursor: pointer; /* Con trỏ khi hover vào */
+      }
+      .category ul,
+      .contact-info ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .category li {
+        background-color: #ffedcc; /* Màu nền nhẹ cho mỗi chủ đề */
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+      }
+      .category li a,
+      .contact-info a {
+        text-decoration: none;
+        color: #333;
+      }
+      .intro {
+        background-color: #fff;
+        padding: 15px;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+      }
+      .intro h2 {
+        font-size: 1.6em;
+        margin-bottom: 10px;
+      }
+      .contact-link {
+        color: #ff7f00;
+        text-decoration: none;
+        font-weight: bold; /* In đậm chữ Zalo */
+      }
+      .footer {
+        background-color: #ff7f00; /* Màu cam */
+        color: white;
+        text-align: center;
+        padding: 5px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Diễn Đàn Thảo Luận Khoa Học</h1>
+      <p>Chào mừng đến với cộng đồng thảo luận khoa học!</p>
+    </header>
+
+    <nav>
+      <a href="{% url 'diendan' %}">Trang Chủ</a>
+      <a href="#intro">Giới Thiệu</a>
+      <a href="#categories" onclick="toggleCategories()">Chuyên Mục</a>
+      <a href="#contact" onclick="toggleContactInfo()">Liên Hệ</a>
+    </nav>
+
+    <div class="container">
+      <!-- Phần giới thiệu -->
+      <div id="intro" class="intro">
+        <h2>Giới Thiệu</h2>
+        <p>
+          Diễn đàn thảo luận khoa học là một nền tảng nơi các nhà khoa học, sinh
+          viên, và những người đam mê nghiên cứu có thể giao lưu và chia sẻ
+          những kiến thức mới nhất trong các lĩnh vực khoa học. Đây là không
+          gian mở, nơi mọi người có thể thảo luận về các chủ đề đa dạng từ vũ
+          trụ, sinh học, công nghệ, đến môi trường, cùng với những xu hướng
+          nghiên cứu, công nghệ mới nhất mà họ quan tâm.
+        </p>
+        <p>
+          Diễn đàn cung cấp các chuyên mục rõ ràng, giúp người dùng dễ dàng tìm
+          kiếm và tham gia thảo luận về những chủ đề mình yêu thích. Mỗi chuyên
+          mục sẽ bao gồm nhiều bài viết, nghiên cứu và cuộc trò chuyện mà bạn có
+          thể tham gia để chia sẻ quan điểm của mình. Bạn sẽ được tiếp cận với
+          các thông tin khoa học chất lượng, có thể giúp nâng cao kiến thức cá
+          nhân hoặc hỗ trợ trong công việc nghiên cứu.
+        </p>
+        <p>
+          Bên cạnh đó, diễn đàn cũng là nơi tổ chức các sự kiện khoa học, hội
+          thảo trực tuyến, các buổi chia sẻ kinh nghiệm từ các chuyên gia trong
+          ngành. Đây là cơ hội để bạn có thể kết nối với những người có cùng đam
+          mê và mục tiêu nghiên cứu.
+        </p>
+        <p>
+          Hãy tham gia ngay để cùng khám phá và học hỏi thêm nhiều điều bổ ích
+          từ cộng đồng khoa học của chúng tôi!
+        </p>
+      </div>
+
+      <!-- Các chuyên mục - Thách thức toán học -->
+      <div id="categories" class="category">
+        <h2>Thách Thức Toán Học</h2>
+        <ul>
+          <li><a href="#">Giải quyết bài toán Riemann Hypothesis</a></li>
+          <li>
+            <a href="#">Phương trình Navier-Stokes và ứng dụng trong vật lý</a>
+          </li>
+          <li><a href="#">Lý thuyết số và các giả thuyết nổi tiếng</a></li>
+          <li>
+            <a href="#"
+              >Bài toán P vs NP và tầm quan trọng trong khoa học máy tính</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              >Những ứng dụng toán học trong học máy và trí tuệ nhân tạo</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Phần liên hệ -->
+      <div id="contact" class="contact-info">
+        <h2>Liên Hệ</h2>
+        <p>
+          Để liên hệ với chúng tôi, bạn có thể sử dụng đường link Zalo dưới đây:
+        </p>
+        <a
+          href="https://zalo.me/your-zalo-id"
+          class="contact-link"
+          target="_blank"
+          ><strong>Liên hệ qua Zalo</strong></a
+        >
+      </div>
+    </div>
+
+    <!-- Phần footer -->
+    <footer class="footer">
+      <p>
+        &copy; 2025 Diễn Đàn Thảo Luận Khoa Học - Tất cả các quyền được bảo vệ
+      </p>
+    </footer>
+
+    <script>
+      // Toggle hiển thị chuyên mục
+      function toggleCategories() {
+        const categories = document.getElementById("categories");
+        categories.style.display =
+          categories.style.display === "block" ? "none" : "block";
+      }
+
+      // Toggle hiển thị liên hệ
+      function toggleContactInfo() {
+        const contactInfo = document.getElementById("contact");
+        contactInfo.style.display =
+          contactInfo.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </body>
+</html>
