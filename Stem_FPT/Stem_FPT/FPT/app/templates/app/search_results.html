@@ -1,0 +1,11 @@
+<h2>Kết quả tìm kiếm cho: "{{ query }}"</h2>
+
+{% if results %} {% for post in results %}
+<div class="post">
+  <h3>{{ post.title }}</h3>
+  <p>{{ post.content }}</p>
+  <hr />
+</div>
+{% endfor %} {% else %}
+<p>Không tìm thấy kết quả.</p>
+{% endif %}

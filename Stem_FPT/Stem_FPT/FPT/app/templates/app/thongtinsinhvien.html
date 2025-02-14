@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông Tin Sinh Viên</title>
+    <link rel="stylesheet" href="{% static 'css/student_profile.css' %}" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7f9;
+        font-family: "Roboto", Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      /* Thanh công cụ dính lên trên */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ff7700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
+
+      /* Để tránh nội dung bị che mất bởi header */
+      .content {
+        margin-top: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Logo */
+      .logo {
+        width: 120px;
+        height: auto;
+      }
+
+      /* Nút Trang Chủ */
+      .home-link {
+        margin-left: 20px; /* Để nút không dính sát logo */
+      }
+
+      .home-button {
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        background-color: #ff7700;
+        padding: 10px 15px;
+        border-radius: 5px;
+        display: inline-block;
+      }
+
+      .home-button:hover {
+        background-color: #e65c00;
+      }
+
+      /* Nút Chỉnh Sửa Thông Tin */
+      .update-info {
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #e65c00;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-left: auto;
+        margin-right: 30px;
+      }
+
+      .update-info:hover {
+        background-color: #cc5200;
+      }
+
+      /* Container chứa thông tin sinh viên */
+      .profile-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+      }
+
+      /* Card chứa thông tin */
+      .profile-card {
+        background: white;
+        width: 60%;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      /* Ảnh đại diện */
+      .avatar-container {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 15px;
+        border: 3px solid #ff7700;
+      }
+
+      .avatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Tiêu đề */
+      h1 {
+        color: #333;
+        font-size: 26px;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      /* Bố cục thông tin theo dạng bảng */
+      .profile-info {
+        display: table;
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .profile-info tr {
+        border-bottom: 1px solid #ddd;
+      }
+
+      .profile-info td {
+        padding: 10px 15px;
+        font-size: 16px;
+        color: #555;
+      }
+
+      .profile-info td:first-child {
+        font-weight: bold;
+        color: #000;
+        width: 35%;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .profile-card {
+          width: 90%;
+        }
+        .profile-info td {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Logo FPT -->
+      <img
+        class="logo"
+        src="{% static 'app/images/FPT.png' %}"
+        alt="Logo FPT"
+      />
+
+      <!-- Nút Trang Chủ -->
+      <div class="home-link">
+        <a href="{% url 'home' %}" class="home-button">Trang Chủ</a>
+      </div>
+
+      <!-- Nút Chỉnh sửa hoặc Đăng nhập -->
+      {% if user.is_authenticated %}
+      <a href="{% url 'chinhsuathongtin' %}" class="update-info"
+        >Chỉnh sửa thông tin</a
+      >
+      {% else %}
+      <a href="{% url 'dangnhap' %}" class="update-info"
+        >Đăng nhập để xem thông tin</a
+      >
+      {% endif %}
+    </header>
+
+    <!-- Phần nội dung để tránh bị header che -->
+    <div class="content">
+      {% if user.is_authenticated %}
+      <div class="profile-container">
+        <div class="profile-card">
+          <div class="avatar-container">
+            <img
+              class="avatar"
+              src="{% static 'app/images/profile.jpg' %}"
+              alt="Avatar Sinh Viên"
+            />
+          </div>
+          <h1>Thông Tin Sinh Viên</h1>
+          <table class="profile-info">
+            <tr>
+              <td>Họ và Tên:</td>
+              <td>{{ student_info.name }}</td>
+            </tr>
+            <tr>
+              <td>MSSV:</td>
+              <td>{{ student_info.mssv }}</td>
+            </tr>
+            <tr>
+              <td>Lớp:</td>
+              <td>{{ student_info.class_name }}</td>
+            </tr>
+            <tr>
+              <td>Năm Học:</td>
+              <td>{{ student_info.nam_hoc }}</td>
+            </tr>
+            <tr>
+              <td>Năm Sinh:</td>
+              <td>{{ student_info.nam_sinh }}</td>
+            </tr>
+            <tr>
+              <td>Địa Chỉ Thường Trú:</td>
+              <td>{{ student_info.dia_chi_thuong_tru }}</td>
+            </tr>
+            <tr>
+              <td>Quê Quán:</td>
+              <td>{{ student_info.que_quan }}</td>
+            </tr>
+            <tr>
+              <td>Số Điện Thoại:</td>
+              <td>{{ student_info.so_dien_thoai }}</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>{{ student_info.email }}</td>
+            </tr>
+            <tr>
+              <td>Thông Tin Gia Đình:</td>
+              <td>{{ student_info.thong_tin_gia_dinh }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      {% else %}
+      <div class="profile-container">
+        <h1>Vui lòng đăng nhập để xem thông tin sinh viên của bạn.</h1>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
