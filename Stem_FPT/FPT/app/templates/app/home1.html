@@ -1,0 +1,43 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block main-content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="mb-3">Vì sao ngày càng nhiều phụ huynh chọn trường nội trú cho con?</h2>
+      <img src="https://hoalac-school.fpt.edu.vn/wp-content/uploads/HL-23-1-1024x683.jpg" class="img-fluid rounded-3 mb-3" alt="Hình ảnh bài viết">
+      <p style="text-align: justify; font-size: 16px;">
+        Trong những năm gần đây, số lượng phụ huynh lựa chọn mô hình trường nội trú cho con cái ngày càng gia tăng. Điều này xuất phát từ nhiều yếu tố như môi trường học tập an toàn, giáo dục toàn diện, và sự rèn luyện tính tự lập cho học sinh.
+      </p>
+      <h4 class="mt-4">Môi trường học tập toàn diện</h4>
+      <p style="text-align: justify; font-size: 16px;">
+        Trường nội trú cung cấp không gian học tập chuyên biệt với sự giám sát chặt chẽ từ giáo viên. Học sinh có thể tập trung tối đa vào việc học mà không bị xao nhãng bởi những yếu tố bên ngoài.
+      </p>
+      <h4 class="mt-4">Phát triển kỹ năng tự lập</h4>
+      <p style="text-align: justify; font-size: 16px;">
+        Khi sống xa nhà, học sinh có cơ hội rèn luyện kỹ năng tự lập như quản lý thời gian, làm việc nhóm và tự giải quyết vấn đề, giúp các em trưởng thành hơn khi bước vào đời.
+      </p>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="col-md-4">
+      <h4 class="mb-3">Bài viết liên quan</h4>
+      <div class="mb-3">
+        <a href="{% url 'home2' %}">
+          <img src="{% static 'app/images/body2.png' %}" class="img-fluid rounded-3" alt="Bài viết 2">
+        </a>
+        <p class="mt-2"><a href="{% url 'home2' %}" style="text-decoration: none; font-weight: bold; color: #333;">Khám phá giờ học địa lý thú vị cùng lớp 11B3</a></p>
+      </div>
+      <div class="mb-3">
+        <a href="{% url 'home3' %}">
+          <img src="{% static 'app/images/body3.jpg' %}" class="img-fluid rounded-3" alt="Bài viết 3">
+        </a>
+        <p class="mt-2"><a href="{% url 'home3' %}" style="text-decoration: none; font-weight: bold; color: #333;">Hội thảo “Tuổi 15 và trí tuệ cảm xúc trong thời đại số”</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<p>&nbsp;</p>
+{% endblock main-content %}
+

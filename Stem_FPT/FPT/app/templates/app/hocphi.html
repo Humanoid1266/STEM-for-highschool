@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Học Phí Trường THPT FPT</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.8; /* Tăng line-height cho dễ đọc */
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4; /* Nền nhẹ nhàng */
+      }
+      header {
+        background-color: #ff7700;
+        color: white;
+        padding: 15px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 24px; /* Tăng kích thước chữ */
+        margin: 0;
+      }
+      section {
+        padding: 20px;
+        margin: 10px;
+      }
+      .fees {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm shadow cho đẹp */
+      }
+      .fees h2 {
+        color: #ff6600;
+        font-size: 26px; /* Tăng kích thước tiêu đề */
+      }
+      .fee-list {
+        list-style-type: none;
+        padding-left: 0;
+        width: 55%;
+        font-size: 18px; /* Tăng kích thước chữ */
+      }
+      .fee-list li {
+        margin-bottom: 12px; /* Thêm khoảng cách giữa các dòng */
+      }
+      /* Điều chỉnh kích thước ảnh */
+      .fee-image {
+        width: 50%; /* Mở rộng ảnh chiếm 50% không gian */
+        height: auto;
+        border-radius: 10px; /* Làm bo góc ảnh */
+      }
+      /* Tạo khoảng cách cho chữ và ảnh */
+      .fee-info {
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Học Phí Trường THPT FPT</h1>
+    </header>
+
+    <!-- Phần Học Phí -->
+    <section class="fees">
+      <!-- Thêm ảnh học phí -->
+      <img
+        class="fee-image"
+        src="{% static 'app/images/hocphi.jpg' %}"
+        alt="Học phí Trường THPT FPT"
+      />
+
+      <!-- Phần thông tin học phí -->
+      <div class="fee-info">
+        <h2>Thông Tin Học Phí</h2>
+        <ul class="fee-list">
+          <li>
+            <strong>Lớp 10 năm học 2024 - 2025:</strong> 33.500.000 VNĐ/kỳ
+          </li>
+          <li>
+            <strong>Lớp 11 năm học 2025 - 2026:</strong> 36.000.000 VNĐ/kỳ
+          </li>
+          <li>
+            <strong>Lớp 12 năm học 2026 - 2027:</strong> 38.500.000 VNĐ/kỳ
+          </li>
+          <li><strong>Phí quản lý nội trú:</strong> 8.000.000 VNĐ/kỳ</li>
+        </ul>
+        <p style="font-size: 18px">Một năm học có 2 kỳ.</p>
+      </div>
+    </section>
+  </body>
+</html>

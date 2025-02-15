@@ -1,0 +1,42 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block main-content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="mb-3">Khám phá giờ học địa lý thú vị cùng lớp 11B3 tại Trường THPT FPT Hà Nội</h2>
+      <img src="https://hoalac-school.fpt.edu.vn/wp-content/uploads/472021288_1036781885143946_2790177717254030016_n-1024x683.jpg" class="img-fluid rounded-3 mb-3" alt="Hình ảnh bài viết">
+      <p style="text-align: justify; font-size: 16px;">
+        Trong tiết học Địa lý vừa qua, lớp 11B3 đã có cơ hội trải nghiệm một phương pháp học tập mới, giúp các bạn học sinh hiểu sâu hơn về các hiện tượng địa lý và ứng dụng thực tế.
+      </p>
+      <h4 class="mt-4">Phương pháp giảng dạy sáng tạo</h4>
+      <p style="text-align: justify; font-size: 16px;">
+        Giáo viên sử dụng bản đồ tương tác, các mô hình thực tế ảo và những câu hỏi mở để kích thích tư duy của học sinh, giúp các bạn khám phá bài học một cách sinh động và trực quan hơn.
+      </p>
+      <h4 class="mt-4">Ứng dụng thực tiễn</h4>
+      <p style="text-align: justify; font-size: 16px;">
+        Ngoài lý thuyết, học sinh còn được tham gia vào các hoạt động thực hành như lập bản đồ khu vực xung quanh trường hoặc phân tích dữ liệu khí hậu, giúp kiến thức trở nên dễ tiếp thu hơn.
+      </p>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="col-md-4">
+      <h4 class="mb-3">Bài viết liên quan</h4>
+      <div class="mb-3">
+        <a href="{% url 'home1' %}">
+          <img src="{% static 'app/images/body1.jpg' %}" class="img-fluid rounded-3" alt="Bài viết 1">
+        </a>
+        <p class="mt-2"><a href="{% url 'home1' %}" style="text-decoration: none; font-weight: bold; color: #333;">Vì sao ngày càng nhiều phụ huynh chọn trường nội trú cho con?</a></p>
+      </div>
+      <div class="mb-3">
+        <a href="{% url 'home3' %}">
+          <img src="{% static 'app/images/body3.jpg' %}" class="img-fluid rounded-3" alt="Bài viết 3">
+        </a>
+        <p class="mt-2"><a href="{% url 'home3' %}" style="text-decoration: none; font-weight: bold; color: #333;">Hội thảo “Tuổi 15 và trí tuệ cảm xúc trong thời đại số”</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<p>&nbsp;</p>
+{% endblock main-content %}

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat với cán bộ tư vấn</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f4f4f4;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      #chat-bubble {
+        width: 60px;
+        height: 60px;
+        background-color: #ff6f00;
+        color: white;
+        position: fixed;
+        bottom: 80px; /* Chỉnh lại vị trí của chat bubble */
+        left: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-size: 24px;
+        z-index: 9999; /* Đảm bảo chat bubble ở trên các phần tử khác */
+      }
+
+      /* Chatbox */
+      #chatbox {
+        width: 400px;
+        height: 600px;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background-color: white;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        display: none; /* Ẩn chatbox mặc định */
+        flex-direction: column;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      #chatbox-header {
+        background-color: #ff6f00;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px 10px 0 0;
+      }
+
+      #chatbox-header img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      #chatbox-header .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #close-chat {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      #messages {
+        flex-grow: 1;
+        padding: 10px;
+        overflow-y: auto;
+        border-bottom: 1px solid #ccc;
+      }
+
+      #input-area {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        gap: 5px;
+      }
+
+      #input-area input[type="text"] {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      #input-area button {
+        padding: 10px;
+        background-color: #ff6f00;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #input-area button:hover {
+        background-color: #e66000;
+      }
+
+      .message {
+        margin-bottom: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        max-width: 80%;
+      }
+
+      .user {
+        background-color: #f4f4f4;
+        margin-left: auto;
+      }
+
+      .bot {
+        background-color: #ffe0b2;
+        margin-right: auto;
+      }
+
+      .timestamp {
+        font-size: 12px;
+        color: gray;
+        text-align: right;
+        margin-top: -5px;
+      }
+
+      .option {
+        padding: 10px;
+        background-color: #ff6f00;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        margin-bottom: 5px;
+      }
+
+      .option:hover {
+        background-color: #e66000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Bong bóng chat -->
+    <div id="chat-bubble">💬</div>
+
+    <!-- Cửa sổ chat -->
+    <div id="chatbox">
+      <div id="chatbox-header">
+        <div class="title">
+          {% load static %}
+          <img
+            class="logo"
+            src="{% static 'app/images/FPT.png' %}"
+            alt="Logo Trường"
+          />
+          <div>
+            <strong>Trường THPT FPT</strong><br />
+            Cán bộ nhà trường luôn sẵn sàng tư vấn thông tin cho quý vị! Xin hãy
+            để lại lời nhắn.
+          </div>
+        </div>
+        <button id="close-chat">×</button>
+      </div>
+      <div id="messages">
+        <div class="message bot">
+          Cán bộ tư vấn: Anh/Chị đang quan tâm đến:
+          <div class="timestamp" id="timestamp-init"></div>
+        </div>
+      </div>
+      <div id="options">
+        <button
+          class="option"
+          data-response="Chương trình học của THPT FPT có những đặc điểm sau:
+- Chương trình chính khóa: chương trình văn hoá theo chuẩn của Bộ Giáo dục và Đào tạo.
+- Chương trình tiếng Anh quốc tế với giáo trình của NXB Đại học Oxford (Anh)..."
+        >
+          Chương trình đào tạo
+        </button>
+        <button
+          class="option"
+          data-response="Nhà trường gửi Anh/Chị học phí:
+Lớp 10 năm học 2024 - 2025: 33.500.000 VNĐ/kỳ..."
+        >
+          Học phí
+        </button>
+        <button
+          class="option"
+          data-response="Trường THPT FPT là trường học nội trú ở khu công nghệ cao Hoà Lạc, Thạch Thất, Hà Nội."
+        >
+          Địa chỉ
+        </button>
+        <button
+          class="option"
+          data-response="Năm học 2024 - 2025, trường THPT FPT tuyển sinh bằng hình thức xét tuyển:
+      
+      1. Xét học bạ:
+         - Điểm trung bình cả năm lớp 9 từ 6.5 trở lên.
+         - Đạt hạnh kiểm khá trở lên.
+      
+      2. Xét điểm thi vào lớp 10 của tỉnh/thành phố:
+         - Tổng điểm các môn xét tuyển đạt yêu cầu theo từng khu vực.
+      
+      3. Học bổng:
+         - Học sinh có thành tích xuất sắc có cơ hội nhận học bổng từ 30% - 100% học phí.
+         - Tiêu chí xét học bổng dựa trên điểm số, năng lực đặc biệt và phỏng vấn trực tiếp.
+      
+      Thời gian tuyển sinh: Từ tháng 3 đến tháng 8 năm 2024.
+      
+      Liên hệ ngay để được tư vấn chi tiết."
+        >
+          Phương thức tuyển sinh
+        </button>
+
+        <button
+          class="option"
+          data-response="Thông tin về môi trường học tập và nội trú bao gồm:
+- Ký túc xá hiện đại, đầy đủ tiện nghi.
+- Đội ngũ cán bộ quản lý thân thiện, nhiệt tình hỗ trợ."
+        >
+          Môi trường học tập và nội trú
+        </button>
+      </div>
+      <div id="input-area">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Nhập tin nhắn của bạn..."
+        />
+        <button id="send-btn">Gửi</button>
+      </div>
+    </div>
+
+    <script>
+      const chatBubble = document.getElementById("chat-bubble");
+      const chatbox = document.getElementById("chatbox");
+      const closeChat = document.getElementById("close-chat");
+      const messagesContainer = document.getElementById("messages");
+      const userInput = document.getElementById("user-input");
+      const sendBtn = document.getElementById("send-btn");
+      const options = document.querySelectorAll(".option");
+      const timestampInit = document.getElementById("timestamp-init");
+
+      chatBubble.addEventListener("click", () => {
+        chatbox.style.display = "flex";
+        chatBubble.style.display = "none";
+        timestampInit.innerText = getCurrentTime();
+      });
+
+      closeChat.addEventListener("click", () => {
+        chatbox.style.display = "none";
+        chatBubble.style.display = "flex";
+      });
+
+      sendBtn.addEventListener("click", handleUserMessage);
+      userInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") handleUserMessage();
+      });
+
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          displayMessage(option.innerText, "user");
+
+          // Lấy nội dung phản hồi từ data-response
+          const botResponse = option.getAttribute("data-response");
+
+          // Hiển thị tin nhắn bot và giữ nguyên format HTML
+          displayBotMessage(botResponse);
+        });
+      });
+
+      function handleUserMessage() {
+        const userMessage = userInput.value.trim();
+        if (userMessage) {
+          displayMessage(userMessage, "user");
+          displayBotMessage(
+            `Vui lòng truy cập vào đường link để được hỗ trợ: <a href='http://127.0.0.1:8000/lienhe/' target='_blank' style='color: blue; text-decoration: underline;'>http://127.0.0.1:8000/lienhe/</a>`
+          );
+          userInput.value = "";
+        }
+      }
+
+      function displayMessage(text, sender) {
+        const message = document.createElement("div");
+        message.classList.add("message", sender);
+        message.innerText = text;
+
+        const timestamp = document.createElement("div");
+        timestamp.classList.add("timestamp");
+        timestamp.innerText = getCurrentTime();
+
+        message.appendChild(timestamp);
+        messagesContainer.appendChild(message);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      function displayBotMessage(text) {
+        const botMessage = document.createElement("div");
+        botMessage.classList.add("message", "bot");
+
+        // Dùng innerHTML để giữ nguyên định dạng HTML của text
+        botMessage.innerHTML = text;
+
+        messagesContainer.appendChild(botMessage);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      function getCurrentTime() {
+        const now = new Date();
+        return now.toLocaleTimeString("vi-VN", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+      }
+    </script>
+  </body>
+</html>

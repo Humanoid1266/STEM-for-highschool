@@ -1,0 +1,42 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block main-content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="mb-3">Trường THPT FPT tổ chức thành công hội thảo “Tuổi 15 và trí tuệ cảm xúc trong thời đại số”</h2>
+      <img src="https://hoalac-school.fpt.edu.vn/wp-content/uploads/DSC00063-1-1024x683.jpg" class="img-fluid rounded-3 mb-3" alt="Hình ảnh hội thảo">
+      <p style="text-align: justify; font-size: 16px;">
+        Hội thảo đã diễn ra với sự tham gia của gần 300 quý phụ huynh và học sinh, nhằm giúp các em học sinh trang bị kiến thức về trí tuệ cảm xúc trong môi trường học tập hiện đại.
+      </p>
+      <h4 class="mt-4">Chủ đề hội thảo</h4>
+      <p style="text-align: justify; font-size: 16px;">
+        Chương trình tập trung vào việc phát triển trí tuệ cảm xúc, quản lý cảm xúc bản thân và xây dựng kỹ năng giao tiếp, giúp học sinh tự tin hơn trong học tập và cuộc sống.
+      </p>
+      <h4 class="mt-4">Phản hồi từ phụ huynh và học sinh</h4>
+      <p style="text-align: justify; font-size: 16px;">
+        Nhiều phụ huynh đánh giá cao hội thảo vì nội dung thiết thực, giúp các em học sinh nâng cao sự hiểu biết về bản thân và phát triển kỹ năng mềm quan trọng.
+      </p>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-md-4">
+      <h4 class="mb-3">Bài viết liên quan</h4>
+      <div class="mb-3">
+        <a href="{% url 'home1' %}">
+          <img src="{% static 'app/images/body1.jpg' %}" class="img-fluid rounded-3" alt="Bài viết 1">
+        </a>
+        <p class="mt-2"><a href="{% url 'home1' %}" style="text-decoration: none; font-weight: bold; color: #333;">Vì sao ngày càng nhiều phụ huynh chọn trường nội trú cho con?</a></p>
+      </div>
+      <div class="mb-3">
+        <a href="{% url 'home2' %}">
+          <img src="{% static 'app/images/body2.png' %}" class="img-fluid rounded-3" alt="Bài viết 2">
+        </a>
+        <p class="mt-2"><a href="{% url 'home2' %}" style="text-decoration: none; font-weight: bold; color: #333;">Khám phá giờ học địa lý thú vị cùng lớp 11B3</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<p>&nbsp;</p>
+{% endblock main-content %}
