@@ -1,0 +1,148 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block congcuhoctap_content %}
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f6f9;
+        }
+        h1 {
+            text-align: center;
+            color: #FF5722;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        .tool-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .tool {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: #fff;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .tool:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .tool img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .tool-content {
+            padding: 20px;
+            text-align: center;
+        }
+        .tool-content h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .tool-content p {
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 1rem;
+        }
+        .tool-content a {
+            text-decoration: none;
+            color: #FF5722;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        .tool-content a:hover {
+            color: #e64a19;
+        }
+
+        /* App Download Section */
+        .download-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .download-button {
+            display: inline-block;
+            padding: 15px 25px;
+            border-radius: 8px;
+            background-color: #FF5722;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            text-align: center;
+            width: 250px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .download-button:hover {
+            background-color: #e64a19;
+        }
+
+    </style>
+    <h1>CÁC PHẦN MỀM VÀ CÔNG CỤ HỌC TẬP CỦA TRƯỜNG</h1>
+    <div class="tool-container">
+        <div class="tool">
+            <img src="{% static "app/images/ccht1.png" %}" alt="My FPT FSchools">
+            <div class="tool-content">
+                <h3>My FPT Schools</h3>
+                <p>Ứng dụng kết nối thông minh giữa phụ huynh và nhà trường, cung cấp thông tin về thời khóa biểu, điểm danh, bảng điểm và bài tập về nhà.</p>
+                <a href="https://cantho-school.fpt.edu.vn/ung-dung-my-fpt-schools-ung-dung-danh-cho-phu-huynh" target="_blank">Tìm hiểu thêm</a>
+            </div>
+        </div>
+        <div class="tool">
+            <img src="{% static "app/images/ccht2.png" %}" alt="Plickers">
+            <div class="tool-content">
+                <h3>Plickers</h3>
+                <p>Công cụ giúp tổ chức ôn tập và kiểm tra trắc nghiệm trong lớp học một cách hiệu quả và thú vị.</p>
+                <a href="https://help.plickers.com/hc/en-us/articles/360009395854-What-is-Plickers" target="_blank">Tìm hiểu thêm</a>
+            </div>
+        </div>
+        <div class="tool">
+            <img src="{% static "app/images/ccht3.webp" %}" alt="Google Classroom và Google Meet">
+            <div class="tool-content">
+                <h3>Google Classroom và Google Meet</h3>
+                <p>Nền tảng quản lý lớp học và học trực tuyến, hỗ trợ giao và nhận bài tập, chia sẻ tài liệu và tổ chức các buổi học từ xa.</p>
+                <a href="https://blog.quickschools.com/2022/08/19/google-meet-or-google-classroom/" target="_blank">Tìm hiểu thêm</a>
+            </div>
+        </div>
+        <div class="tool">
+            <img src="{% static "app/images/ccht4.jpg" %}" alt="VioEdu">
+            <div class="tool-content">
+                <h3>VioEdu</h3>
+                <p>Hệ thống giáo dục trực tuyến thông minh ứng dụng AI, giúp cá nhân hóa việc học và nâng cao hiệu quả tiếp thu kiến thức.</p>
+                <a href="https://cellphones.com.vn/sforum/cach-su-dung-vioedu" target="_blank">Tìm hiểu thêm</a>
+            </div>
+        </div>
+        <div class="tool">
+            <img src="{% static "app/images/ccht5.jpg" %}" alt="FUNiX">
+            <div class="tool-content">
+                <h3>FUNiX</h3>
+                <p>Đại học trực tuyến cung cấp các khóa học lập trình, giúp học sinh tiếp cận sớm với kiến thức công nghệ thông tin.</p>
+                <a href="https://funix.edu.vn/chia-se-kien-thuc/funix-la-gi/" target="_blank">Tìm hiểu thêm</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Section for App Downloads -->
+    <div class="download-container">
+        <a href="https://play.google.com/store/apps/details?id=com.myfptschool&hl=en-US" class="download-button" target="_blank">Tải My FPT Schools</a>
+        <a href="https://play.google.com/store/apps/details?id=com.plickers.client.android&hl=vi" class="download-button" target="_blank">Tải Plickers</a>
+        <a href="https://play.google.com/web/store/apps/details?id=com.google.android.apps.classroom&hl=en" class="download-button" target="_blank">Tải Google Classroom</a>
+        <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.tachyon&hl=en-US" class="download-button" target="_blank">Tải Google Meet</a>
+        <a href="https://play.google.com/store/apps/details?id=vn.edu.vioedu.student&hl=vi" class="download-button" target="_blank">Tải VioEdu</a>
+        <a href="https://funix.edu.vn/" class="download-button" target="_blank">Tải FUNiX</a>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+{% endblock congcuhoctap_content %}

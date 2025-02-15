@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tuyển Sinh Trường THPT FPT</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        padding-top: 80px; /* Để không bị che bởi header cố định */
+      }
+      header {
+        background-color: #ff7700;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 20px;
+        position: fixed; /* Cố định thanh công cụ */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000; /* Đảm bảo header luôn ở trên cùng */
+      }
+      header h1 {
+        font-size: 30px;
+        margin: 0;
+      }
+      section {
+        background-color: white;
+        margin: 0 20px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      h2,
+      h3 {
+        color: #ff6600;
+        border-bottom: 2px solid #ff6600;
+        padding-bottom: 5px;
+      }
+      h3 {
+        margin-top: 20px;
+        font-size: 20px;
+      }
+      p,
+      ul {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      ul {
+        margin-left: 20px;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      .admission p,
+      .admission ul {
+        margin-top: 10px;
+      }
+      .admission ul li {
+        list-style-type: square;
+        margin-left: 20px;
+      }
+      .admission {
+        margin-top: 30px;
+      }
+      .admission .highlight {
+        color: #ff6600;
+        font-weight: bold;
+      }
+      .btn {
+        display: inline-block;
+        background-color: #ff6600;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+      }
+      .btn:hover {
+        background-color: #e65c00;
+      }
+      footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Tuyển Sinh Trường THPT FPT</h1>
+    </header>
+
+    <!-- Phần Tuyển Sinh -->
+    <section class="admission">
+      <h2>Thông Tin Tuyển Sinh</h2>
+
+      <h3>Đối Tượng Tuyển Sinh</h3>
+      <p>
+        Đối tượng tuyển sinh là học sinh có đủ sức khỏe, đảm bảo học đúng độ
+        tuổi theo quy định của từng khối/lớp đăng ký.
+      </p>
+      <p>
+        Trường hợp học sinh khác độ tuổi tương ứng với từng cấp học sẽ được Nhà
+        trường xem xét và tiếp nhận theo đúng quy định của Bộ Giáo dục và Đào
+        tạo.
+      </p>
+      <p>
+        Học sinh trong độ tuổi quy định ở nước ngoài về nước, con em người nước
+        ngoài làm việc tại Việt Nam… sẽ được xem xét từng trường hợp cụ thể và
+        tuân thủ theo đúng quy định của Sở Giáo dục và Đào tạo.
+      </p>
+
+      <h3>Chỉ Tiêu Tuyển Sinh</h3>
+      <p>
+        Trường Trung học Phổ thông FPT Hà Nội dự kiến tuyển sinh
+        <span class="highlight">750 học sinh</span> theo quy định của Sở Giáo
+        dục và Đào tạo (GD&ĐT) Hà Nội.
+      </p>
+
+      <h3>Học Bổng và Các Chế Độ Ưu Đãi</h3>
+      <p>
+        Học bổng và các chế độ ưu đãi được áp dụng theo quy định về học bổng và
+        chế độ ưu đãi học phí dành cho học sinh trường THPT FPT.
+      </p>
+
+      <h3>Cách Thức Đăng Ký Xét Tuyển</h3>
+      <p>
+        - Ảnh chụp hoặc bản scan học bạ/bảng điểm điện tử 03 học kỳ dùng để xét
+        tuyển (đối với thí sinh đăng ký thời điểm đầu năm học lớp 10) hoặc bảng
+        điểm của năm học/kỳ học trước đó của cấp THPT (đối với thí sinh đăng ký
+        chuyển trường đến).
+      </p>
+      <p>- Lệ phí xét tuyển: <span class="highlight">200.000 VND</span>.</p>
+      <p>
+        - Tất cả các thí sinh đăng ký và đủ điều kiện xét tuyển sẽ nhận được
+        thông báo xác nhận của nhà trường.
+      </p>
+
+      <h3>Hồ Sơ Xét Tuyển và Nhập Học</h3>
+      <ul>
+        <li>
+          Phiếu đăng ký nhập học (theo mẫu của các cơ sở thuộc Khối phổ thông
+          FPT).
+        </li>
+        <li>Bản sao/công chứng Giấy khai sinh.</li>
+        <li>
+          02 ảnh 3x4 (ghi rõ họ tên, ngày tháng năm sinh phía sau mỗi ảnh).
+        </li>
+        <li>Học bạ THCS (bản gốc).</li>
+        <li>
+          Giấy chứng nhận tốt nghiệp tạm thời (bản gốc) hoặc 01 Bằng tốt nghiệp
+          THCS bản sao công chứng đối với thí sinh tốt nghiệp trước năm 2025.
+        </li>
+        <li>
+          Giấy báo kết quả tuyển sinh vào lớp 10 do Sở GD&ĐT địa phương tổ chức
+          (đối với thí sinh áp dụng phương thức xét tuyển theo điểm thi vào lớp
+          10).
+        </li>
+        <li>
+          Giấy cho phép được học vượt lớp, vào học sớm học muộn hơn so với quy
+          định chung ở các cấp học dưới (nếu có).
+        </li>
+        <li>
+          01 căn cước công dân của học sinh hoặc chứng minh nhân dân/căn cước
+          công dân của cha/mẹ/người giám hộ của học sinh (bản sao kèm theo bản
+          chính để đối chiếu hoặc bản công chứng).
+        </li>
+      </ul>
+
+      <h3>Địa Điểm Tư Vấn Tuyển Sinh và Nộp Hồ Sơ Dự Tuyển</h3>
+      <p>
+        Trường THPT FPT, khuôn viên Trường Đại học FPT, Khu CNC Hoà Lạc, km 29,
+        Đại lộ Thăng Long, Thạch Hoà, Thạch Thất, Hà Nội.
+      </p>
+      <a href="{% url 'dangky' %}" class="btn">Đăng ký ngay</a>
+    </section>
+  </body>
+</html>

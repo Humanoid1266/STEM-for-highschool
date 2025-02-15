@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khôi phục mật khẩu</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f4f4f4;
+      }
+      /* Container chính */
+      .container {
+        margin-top: 50px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        border: 1px solid #ddd; /* Đường viền đơn giản */
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333; /* Tiêu đề màu tối đơn giản */
+      }
+      .option {
+        margin: 15px 0;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .option:hover {
+        background-color: #ffe4cc; /* Nền nhạt hơn khi hover */
+        color: #ff7700; /* Chữ đổi sang màu cam khi hover */
+      }
+      .icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: #ff7700; /* Icon màu cam */
+        color: white;
+        font-size: 20px;
+      }
+      .btn {
+        display: block;
+        width: calc(100% - 20px);
+        margin: 20px auto 0;
+        padding: 10px;
+        background-color: #ff7700; /* Nút màu cam */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.3s;
+      }
+      .btn:hover {
+        background-color: #e56700; /* Màu cam đậm hơn khi hover */
+      }
+      /* Form xác nhận */
+      .confirmation-form {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .confirmation-form input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      /* Thanh footer */
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ff7700; /* Màu cam */
+        color: white;
+        padding: 10px 20px;
+        text-align: left; /* Chữ căn trái */
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Container chính -->
+    <div class="container">
+      <h2>Khôi phục mật khẩu</h2>
+      <!-- Tùy chọn khôi phục bằng số điện thoại -->
+      <form action="reset_password_phone.php" method="POST">
+        <label for="phone" class="option">
+          <input type="radio" name="method" value="phone" id="phone" />
+          <div class="icon">📞</div>
+          <span>Bằng số điện thoại đã đăng ký</span>
+        </label>
+
+        <!-- Tùy chọn khôi phục bằng email -->
+        <label for="email" class="option">
+          <input type="radio" name="method" value="email" id="email" />
+          <div class="icon">📧</div>
+          <span>Bằng email đã đăng ký</span>
+        </label>
+
+        <!-- Form xác nhận (sẽ hiển thị khi lựa chọn phương thức) -->
+        <div
+          id="confirmation-phone"
+          class="confirmation-form"
+          style="display: none"
+        >
+          <label for="phone-input">Nhập số điện thoại của bạn</label>
+          <input
+            type="text"
+            name="phone-input"
+            id="phone-input"
+            placeholder="Số điện thoại"
+          />
+          <button class="btn" type="submit">Xác nhận</button>
+        </div>
+
+        <div
+          id="confirmation-email"
+          class="confirmation-form"
+          style="display: none"
+        >
+          <label for="email-input">Nhập email của bạn</label>
+          <input
+            type="text"
+            name="email-input"
+            id="email-input"
+            placeholder="Email của bạn"
+          />
+          <button class="btn" type="submit">Xác nhận</button>
+        </div>
+      </form>
+
+      <!-- Nút quay lại -->
+      <a href="{% url 'dangnhap' %}" class="btn">Quay lại</a>
+    </div>
+
+    <!-- Thanh footer -->
+    <footer>© 2024 FPT University</footer>
+
+    <script>
+      // Hiển thị form xác nhận theo phương thức được chọn
+      document.getElementById("phone").addEventListener("change", function () {
+        document.getElementById("confirmation-phone").style.display = "block";
+        document.getElementById("confirmation-email").style.display = "none";
+      });
+
+      document.getElementById("email").addEventListener("change", function () {
+        document.getElementById("confirmation-email").style.display = "block";
+        document.getElementById("confirmation-phone").style.display = "none";
+      });
+    </script>
+  </body>
+</html>

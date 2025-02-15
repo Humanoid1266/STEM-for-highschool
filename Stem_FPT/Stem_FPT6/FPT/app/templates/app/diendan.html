@@ -1,0 +1,202 @@
+{% extends 'app/base.html' %} {% load static %} {% block diendan_content %}
+
+<div class="container mt-5">
+  <section
+    class="forum-intro text-center py-5 mb-4"
+    style="background-color: #f8f9fa; border-radius: 8px"
+  >
+    <h2 style="color: #e56700">Chào mừng đến với Diễn đàn STEM</h2>
+    <p class="lead text-secondary">
+      Kết nối, học hỏi và chia sẻ kiến thức với cộng đồng STEM!
+    </p>
+  </section>
+
+  <div class="row">
+    <!-- Forum Categories Section -->
+    <section class="forum-categories col-md-6 mb-3">
+      <h3 class="h4 mb-3" style="color: #e56700">THỂ LOẠI</h3>
+      <ul class="list-group shadow-sm">
+        <li class="list-group-item border-0 bg-light mb-2">
+          <div class="d-flex align-items-start">
+            <img
+              src="{% static 'app/images/chunghiaxahoi.jpg' %}"
+              alt="Thảo luận khoa học"
+              style="
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                margin-right: 10px;
+              "
+            />
+            <div>
+              <a href="{% url 'thaoluankhoahoc' %}" class="text-dark"
+                >Thảo luận khoa học</a
+              >
+              <p class="text-muted small mt-2">
+                Tham gia vào các cuộc thảo luận về các phát hiện khoa học mới
+                nhất và các khám phá thú vị trong các lĩnh vực khác nhau.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item border-0 bg-light mb-2">
+          <div class="d-flex align-items-start">
+            <img
+              src="{% static 'app/images/xuhuongcongnghe.jpg' %}"
+              alt="Xu hướng công nghệ"
+              style="
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                margin-right: 10px;
+              "
+            />
+            <div>
+              <a href="{% url 'xuhuongcn' %}" class="text-dark"
+                >Xu hướng công nghệ</a
+              >
+              <p class="text-muted small mt-2">
+                Cập nhật về các xu hướng công nghệ mới, từ trí tuệ nhân tạo đến
+                các công nghệ phần mềm và phần cứng hiện đại.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item border-0 bg-light mb-2">
+          <div class="d-flex align-items-start">
+            <img
+              src="{% static 'app/images/kithuat.jpg' %}"
+              alt="Thông tin chi tiết về kỹ thuật"
+              style="
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                margin-right: 10px;
+              "
+            />
+            <div>
+              <a
+                href={% url 'chitietkythuat' %}
+                class="text-dark"
+                >Thông tin chi tiết về kỹ thuật</a
+              >
+              <p class="text-muted small mt-2">
+                Chia sẻ và học hỏi về các công nghệ, quy trình và kỹ thuật mới
+                trong ngành kỹ thuật.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item border-0 bg-light mb-2">
+          <div class="d-flex align-items-start">
+            <img
+              src="{% static 'app/images/toanhoc.jpg' %}"
+              alt="Thách thức toán học"
+              style="
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                margin-right: 10px;
+              "
+            />
+            <div>
+              <a
+                href="{% url 'toanhoc' %}"
+                class="text-dark"
+                >Thách thức toán học</a
+              >
+              <p class="text-muted small mt-2">
+                Giải quyết các bài toán hóc búa và thảo luận về những câu hỏi
+                toán học thú vị.
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Recent Topics Section -->
+    <section class="recent-topics col-md-6 mb-3">
+      <h3 class="h4 mb-3" style="color: #e56700">CHỦ ĐỀ GẦN ĐÂY</h3>
+      <ul class="list-group shadow-sm">
+        <li class="list-group-item border-0 bg-light mb-2">
+          <div class="d-flex align-items-start">
+            <img
+              src="{% static 'app/images/mayphatdien.jpg' %}"
+              alt="Máy phát điện năng lượng mặt trời"
+              style="
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                margin-right: 10px;
+              "
+            />
+            <div>
+              <a
+                href="{% url 'nlmt' %}"
+                class="text-dark"
+                >Máy phát điện năng lượng mặt trời</a
+              >
+              <p class="text-muted small mt-2">
+                Thảo luận về các hệ thống năng lượng mặt trời và ứng dụng của
+                chúng trong việc tạo ra điện sạch và hiệu quả.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item border-0 bg-light mb-2">
+          <div class="d-flex align-items-start">
+            <img
+              src="{% static 'app/images/robot.jpg' %}"
+              alt="Robot điều khiển"
+              style="
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                margin-right: 10px;
+              "
+            />
+            <div>
+              <a
+                href="{% url 'robotdk' %}"
+                class="text-dark"
+                >Robot điều khiển</a
+              >
+              <p class="text-muted small mt-2">
+                Khám phá các công nghệ và giải pháp trong lĩnh vực robot điều
+                khiển tự động, từ ứng dụng công nghiệp đến robot dịch vụ.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item border-0 bg-light mb-2">
+          <div class="d-flex align-items-start">
+            <img
+              src="{% static 'app/images/dolocnuoc.jpg' %}"
+              alt="Máy lọc nước nguyên liệu tự nhiên"
+              style="
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                margin-right: 10px;
+              "
+            />
+            <div>
+              <a
+                href="{% url 'maylocnuoc' %}"
+                class="text-dark"
+                >Máy lọc nước nguyên liệu tự nhiên</a
+              >
+              <p class="text-muted small mt-2">
+                Tìm hiểu về các hệ thống lọc nước sử dụng nguyên liệu tự nhiên
+                để đảm bảo nước sạch cho cộng đồng.
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+{% endblock diendan_content %}

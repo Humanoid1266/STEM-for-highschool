@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông Tin Sinh Viên</title>
+    <style>
+      /* CSS cho trang web */
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: #ffffff; /* Nền màu trắng */
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      /* Thanh công cụ logo trường */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ff7700;
+        padding: 5px 20px; /* Giảm padding để thanh công cụ nhỏ lại */
+        width: 100%;
+      }
+
+      .logo {
+        width: 100px !important; /* Tăng kích thước logo lên 100px */
+        height: auto !important;
+      }
+
+      /* Phần thông tin sinh viên */
+      .profile-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 60%;
+        margin-top: 20px;
+        text-align: left;
+        margin: 0 auto; /* Căn giữa bảng thông tin */
+      }
+
+      h1 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center; /* Căn giữa chữ "Thông Tin Sinh Viên" */
+      }
+
+      .profile-info p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        margin: 5px 0;
+      }
+
+      .profile-info p strong {
+        color: #000;
+      }
+
+      /* Phần thanh công cụ "Chỉnh sửa thông tin" */
+      .update-info {
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #ffa500;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: auto;
+        text-align: center;
+        margin-left: auto;
+        margin-right: 20px;
+        text-decoration: none; /* Loại bỏ gạch chân */
+      }
+
+      .update-info:hover {
+        background-color: #e65c00;
+      }
+
+      .home-link {
+        position: absolute;
+        top: 110px; /* Điều chỉnh vị trí xuống dưới logo */
+        left: 0; /* Sát mép trái của trang web */
+        width: 120px; /* Độ rộng phù hợp */
+        background-color: #ff7700; /* Màu giống thanh taskbar */
+        padding: 8px 0;
+        border-radius: 0 5px 5px 0; /* Bo tròn bên phải để đẹp hơn */
+        text-align: center;
+      }
+
+      .home-button {
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+      }
+
+      .home-button:hover {
+        background-color: #e65c00;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Logo trường -->
+      <img
+        class="logo"
+        src="{% static 'app/images/FPT.png' %}"
+        alt="Logo Trường"
+      />
+      <div class="home-link">
+        <a href="{% url 'home' %}" class="home-button">Trang Chủ</a>
+      </div>
+
+      <!-- Kiểm tra trạng thái đăng nhập của người dùng -->
+      {% if user.is_authenticated %}
+      <!-- Hiển thị thông tin sinh viên và nút "Chỉnh sửa thông tin" -->
+      <a href="{% url 'chinhsuathongtin' %}" class="update-info"
+        >Chỉnh sửa thông tin</a
+      >
+
+      {% else %}
+      <!-- Hiển thị nút đăng nhập nếu chưa đăng nhập -->
+      <a href="{% url 'dangnhap' %}" class="update-info"
+        >Đăng nhập để xem thông tin</a
+      >
+      {% endif %}
+    </header>
+
+    <!-- Phần thông tin sinh viên nếu người dùng đã đăng nhập -->
+    {% if user.is_authenticated %}
+    <div class="profile-container">
+      <h1>Thông Tin Sinh Viên</h1>
+      <div class="profile-info">
+        <p><strong>Họ và Tên:</strong> {{ student_info.name }}</p>
+        <p><strong>MSSV:</strong> {{ student_info.mssv }}</p>
+        <p><strong>Lớp:</strong> {{ student_info.class_name }}</p>
+        <p><strong>Năm Học:</strong> {{ student_info.nam_hoc }}</p>
+        <p><strong>Năm Sinh:</strong> {{ student_info.nam_sinh }}</p>
+        <p>
+          <strong>Địa Chỉ Thường Trú:</strong>
+          {{ student_info.dia_chi_thuong_tru }}
+        </p>
+        <p>
+          <strong>Quê Quán:</strong>
+          {{ student_info.que_quan }}
+        </p>
+        <p>
+          <strong>Số Điện Thoại:</strong>
+          {{ student_info.so_dien_thoai }}
+        </p>
+        <p><strong>Email:</strong> {{ student_info.email }}</p>
+        <p>
+          <strong>Thông Tin Gia Đình:</strong>
+          {{ student_info.thong_tin_gia_dinh }}
+        </p>
+      </div>
+    </div>
+    {% else %}
+    <div class="profile-container">
+      <h1>Vui lòng đăng nhập để xem thông tin sinh viên của bạn.</h1>
+    </div>
+    {% endif %}
+  </body>
+</html>
