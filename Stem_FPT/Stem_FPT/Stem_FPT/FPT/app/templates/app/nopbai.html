@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gửi bài và phản hồi</title>
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: #e0f7fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background: #ffffff;
+        width: 60%;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        display: flex;
+        align-items: center;
+      }
+      .btn {
+        background-color: #00796b;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 20px;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+      .btn:hover {
+        background-color: #004d40;
+      }
+      h2 {
+        color: #00796b;
+        margin-left: 160px;
+      }
+      .status-container {
+        display: flex;
+        border: 1px solid #b2dfdb;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #e0f2f1;
+      }
+      .status-labels {
+        flex: 1;
+        border-right: 1px solid #b2dfdb;
+        padding-right: 10px;
+      }
+      .status-values {
+        flex: 2;
+        padding-left: 10px;
+      }
+      .status-item {
+        padding: 5px 0;
+        border-bottom: 1px solid #b2dfdb;
+      }
+      .status-item:last-child {
+        border-bottom: none;
+      }
+      .comments-container {
+        margin-top: 20px;
+      }
+      .comments-box {
+        display: none;
+      }
+      .comment-list {
+        margin-top: 10px;
+        border-top: 1px solid #b2dfdb;
+        padding-top: 10px;
+      }
+      .comment-item {
+        background-color: #e0f2f1;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <button class="btn" id="add-submission">Thêm bài nộp</button>
+        <button class="btn" id="edit-submission" style="display: none">
+          Chỉnh sửa bài nộp
+        </button>
+        <h2>Gửi bài tập & Phản hồi</h2>
+      </div>
+
+      <div class="status-container">
+        <div class="status-labels">
+          <p class="status-item">Trạng thái bài nộp</p>
+          <p class="status-item">Trạng thái chấm điểm</p>
+          <p class="status-item">Thời gian còn lại</p>
+          <p class="status-item">Chỉnh sửa lần cuối</p>
+          <p class="status-item">Nộp tập tin</p>
+        </div>
+        <div class="status-values">
+          <p class="status-item" id="submission-status">Chưa nộp</p>
+          <p class="status-item">Chưa chấm</p>
+          <p class="status-item">Còn 2 ngày</p>
+          <p class="status-item" id="last-edited">Chưa cập nhật</p>
+          <p class="status-item" id="file-name">Không có tập tin nào</p>
+        </div>
+      </div>
+
+      <!-- Input file (ẩn) -->
+      <input type="file" id="file-upload" style="display: none" />
+
+      <button class="btn" id="toggle-comments">Đăng tải các bình luận</button>
+      <div class="comments-container">
+        <div class="comments-box">
+          <h3>Nhận xét</h3>
+          <textarea
+            id="comment-input"
+            placeholder="Nhập bình luận..."
+            rows="4"
+            style="width: 100%"
+          ></textarea>
+          <button class="btn" id="submit-comment" style="margin-top: 10px">
+            Đăng tải
+          </button>
+          <div class="comment-list" id="comment-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/get_submission_status/")
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.submitted) {
+              document.getElementById("file-name").textContent = data.file_name;
+              document.getElementById("submission-status").textContent =
+                "Đã nộp";
+              document.getElementById("last-edited").textContent =
+                data.last_edited;
+
+              // Ẩn nút "Thêm bài nộp" và hiển thị nút "Chỉnh sửa bài nộp"
+              document.getElementById("add-submission").style.display = "none";
+              document.getElementById("edit-submission").style.display =
+                "inline-block";
+            }
+          })
+          .catch((error) =>
+            console.error("Lỗi khi tải trạng thái bài nộp:", error)
+          );
+      });
+
+      // Xử lý nộp bài
+      document
+        .getElementById("add-submission")
+        .addEventListener("click", function () {
+          if (confirm("Bạn có chắc chắn muốn nộp bài?")) {
+            document.getElementById("file-upload").click();
+          }
+        });
+
+      document
+        .getElementById("file-upload")
+        .addEventListener("change", function () {
+          const file = this.files[0];
+          if (!file) return;
+
+          let formData = new FormData();
+          formData.append("file", file);
+          formData.append("student_name", "Tran Manh Dung");
+
+          fetch("/submit/", {
+            method: "POST",
+            body: formData,
+            headers: { "X-CSRFToken": getCookie("csrftoken") },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message) {
+                document.getElementById("file-name").textContent = file.name;
+                document.getElementById("submission-status").textContent =
+                  "Đã nộp";
+                document.getElementById("last-edited").textContent =
+                  new Date().toLocaleString();
+
+                document.getElementById("add-submission").style.display =
+                  "none";
+                document.getElementById("edit-submission").style.display =
+                  "inline-block";
+              } else {
+                alert("Lỗi khi nộp bài!");
+              }
+            });
+        });
+
+      // Hàm lấy CSRF token
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          const cookies = document.cookie.split(";");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + "=")) {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+    </script>
+  </body>
+</html>
