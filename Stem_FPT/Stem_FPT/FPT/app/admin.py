@@ -1,6 +1,11 @@
 from django.contrib import admin
 from .models import LienHe
 from .models import DangKy
+from .models import AssignmentSubmission
+
+@admin.register(AssignmentSubmission)
+class AssignmentSubmissionAdmin(admin.ModelAdmin):
+    list_display = ('student_name', 'file', 'submitted_at')
 
 @admin.register(LienHe)
 class LienHeAdmin(admin.ModelAdmin):

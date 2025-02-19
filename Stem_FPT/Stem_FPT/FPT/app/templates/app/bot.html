@@ -10,7 +10,7 @@
         margin: 0;
         background-color: #f4f4f4;
         height: 100vh;
-        overflow: hidden;
+        overflow: auto;
       }
 
       #chat-bubble {
@@ -161,6 +161,7 @@
     <div id="chatbox">
       <div id="chatbox-header">
         <div class="title">
+          {% load static %}
           <img
             class="logo"
             src="{% static 'app/images/FPT.png' %}"
@@ -192,8 +193,7 @@
         <button
           class="option"
           data-response="Nhà trường gửi Anh/Chị học phí:
-Lớp 10 năm học 2024 - 2025: 33.500.000 VNĐ/kỳ...
-Chi tiết: https://hoalac-school.fpt.edu.vn/hoc-phi/"
+Lớp 10 năm học 2024 - 2025: 33.500.000 VNĐ/kỳ..."
         >
           Học phí
         </button>
@@ -206,11 +206,25 @@ Chi tiết: https://hoalac-school.fpt.edu.vn/hoc-phi/"
         <button
           class="option"
           data-response="Năm học 2024 - 2025, trường THPT FPT tuyển sinh bằng hình thức xét tuyển:
-1. Xét học bạ...
-..."
+      
+      1. Xét học bạ:
+         - Điểm trung bình cả năm lớp 9 từ 6.5 trở lên.
+         - Đạt hạnh kiểm khá trở lên.
+      
+      2. Xét điểm thi vào lớp 10 của tỉnh/thành phố:
+         - Tổng điểm các môn xét tuyển đạt yêu cầu theo từng khu vực.
+      
+      3. Học bổng:
+         - Học sinh có thành tích xuất sắc có cơ hội nhận học bổng từ 30% - 100% học phí.
+         - Tiêu chí xét học bổng dựa trên điểm số, năng lực đặc biệt và phỏng vấn trực tiếp.
+      
+      Thời gian tuyển sinh: Từ tháng 3 đến tháng 8 năm 2024.
+      
+      Liên hệ ngay để được tư vấn chi tiết."
         >
           Phương thức tuyển sinh
         </button>
+
         <button
           class="option"
           data-response="Thông tin về môi trường học tập và nội trú bao gồm:
@@ -240,30 +254,31 @@ Chi tiết: https://hoalac-school.fpt.edu.vn/hoc-phi/"
       const options = document.querySelectorAll(".option");
       const timestampInit = document.getElementById("timestamp-init");
 
-      // Mở chatbox
       chatBubble.addEventListener("click", () => {
         chatbox.style.display = "flex";
         chatBubble.style.display = "none";
         timestampInit.innerText = getCurrentTime();
       });
 
-      // Đóng chatbox
       closeChat.addEventListener("click", () => {
         chatbox.style.display = "none";
         chatBubble.style.display = "flex";
       });
 
-      // Xử lý gửi tin nhắn
       sendBtn.addEventListener("click", handleUserMessage);
       userInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") handleUserMessage();
       });
 
-      // Xử lý khi click chọn nút sẵn
       options.forEach((option) => {
         option.addEventListener("click", () => {
           displayMessage(option.innerText, "user");
-          displayMessage(option.getAttribute("data-response"), "bot");
+
+          // Lấy nội dung phản hồi từ data-response
+          const botResponse = option.getAttribute("data-response");
+
+          // Hiển thị tin nhắn bot và giữ nguyên format HTML
+          displayBotMessage(botResponse);
         });
       });
 
@@ -271,9 +286,8 @@ Chi tiết: https://hoalac-school.fpt.edu.vn/hoc-phi/"
         const userMessage = userInput.value.trim();
         if (userMessage) {
           displayMessage(userMessage, "user");
-          displayMessage(
-            "Xin chờ giây lát! Cán bộ nhà trường sẽ phản hồi lại câu hỏi ngay.",
-            "bot"
+          displayBotMessage(
+            `Vui lòng truy cập vào đường link để được hỗ trợ: <a href='http://127.0.0.1:8000/lienhe/' target='_blank' style='color: blue; text-decoration: underline;'>http://127.0.0.1:8000/lienhe/</a>`
           );
           userInput.value = "";
         }
@@ -290,6 +304,17 @@ Chi tiết: https://hoalac-school.fpt.edu.vn/hoc-phi/"
 
         message.appendChild(timestamp);
         messagesContainer.appendChild(message);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      function displayBotMessage(text) {
+        const botMessage = document.createElement("div");
+        botMessage.classList.add("message", "bot");
+
+        // Dùng innerHTML để giữ nguyên định dạng HTML của text
+        botMessage.innerHTML = text;
+
+        messagesContainer.appendChild(botMessage);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
       }
 

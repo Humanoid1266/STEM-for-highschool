@@ -2,6 +2,14 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
+class AssignmentSubmission(models.Model):
+    student_name = models.CharField(max_length=255)
+    file = models.FileField(upload_to='submissions/')
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.student_name} - {self.file.name}"
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()

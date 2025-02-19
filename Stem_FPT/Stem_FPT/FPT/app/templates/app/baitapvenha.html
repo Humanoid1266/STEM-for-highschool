@@ -1,0 +1,221 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Môn học</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #ff7700;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 1000px;
+        margin: auto;
+      }
+      .subject {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        cursor: pointer;
+      }
+      .subject:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+      .subject img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+      .subject .title {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .assignment-container {
+        display: none;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+        text-align: left;
+        font-size: 18px;
+      }
+      .btn-submit {
+        background-color: #00796b; /* Màu xanh đậm */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        margin: 5px;
+      }
+
+      .btn-submit:hover {
+        background-color: #004d40; /* Màu xanh tối khi hover */
+      }
+
+      .btn-submit + input[type="file"] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: white; text-transform: uppercase">Danh Sách Môn Học</h1>
+    <div class="container">
+      <div class="subject" data-subject="toan">
+        <img src="{% static 'app/images/toan.jpg' %}" alt="Toán" />
+        <div class="title">Toán</div>
+      </div>
+      <div class="subject" data-subject="vatly">
+        <img src="{% static 'app/images/vatly.jpg' %}" alt="Vật Lý" />
+        <div class="title">Vật Lý</div>
+      </div>
+      <div class="subject" data-subject="hoa">
+        <img src="{% static 'app/images/hoa.jpg' %}" alt="Hóa" />
+        <div class="title">Hóa</div>
+      </div>
+      <div class="subject" data-subject="nguvan">
+        <img src="{% static 'app/images/nguvan.jpg' %}" alt="Ngữ Văn" />
+        <div class="title">Ngữ Văn</div>
+      </div>
+      <div class="subject" data-subject="su">
+        <img src="{% static 'app/images/su.jpg' %}" alt="Lịch Sử" />
+        <div class="title">Lịch Sử</div>
+      </div>
+      <div class="subject" data-subject="dia">
+        <img src="{% static 'app/images/dia.jpg' %}" alt="Địa Lí" />
+        <div class="title">Địa Lí</div>
+      </div>
+      <div class="subject" data-subject="sinh">
+        <img src="{% static 'app/images/sinh.jpg' %}" alt="Sinh học" />
+        <div class="title">Sinh học</div>
+      </div>
+      <div class="subject" data-subject="tienganh">
+        <img src="{% static 'app/images/tienganh.jpg' %}" alt="Tiếng Anh" />
+        <div class="title">Tiếng Anh</div>
+      </div>
+      <div class="subject" data-subject="gdcd">
+        <img src="{% static 'app/images/gdcd.jpg' %}" alt="Giáo dục công dân" />
+        <div class="title">Giáo dục công dân</div>
+      </div>
+      <div class="subject" data-subject="tinhoc">
+        <img src="{% static 'app/images/tinhoc.jpg' %}" alt="Tin học" />
+        <div class="title">Tin học</div>
+      </div>
+      <div class="subject" data-subject="gdqp">
+        <img
+          src="{% static 'app/images/gdqp.jpg' %}"
+          alt="Giáo dục quốc phòng"
+        />
+        <div class="title">Giáo dục quốc phòng</div>
+      </div>
+      <div class="subject" data-subject="gdtc">
+        <img src="{% static 'app/images/gdtc.jpg' %}" alt="Giáo dục thể chất" />
+        <div class="title">Giáo dục thể chất</div>
+      </div>
+    </div>
+    <div id="assignment-container" class="assignment-container"></div>
+
+    <div class="container">
+      {% for subject in subjects %}
+      <div class="subject" data-subject="{{ subject.slug }}">
+        <img
+          src="{% static 'app/images/' %}{{ subject.slug }}.jpg"
+          alt="{{ subject.name }}"
+        />
+        <div class="title">{{ subject.name }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    <div id="assignment-container" class="assignment-container"></div>
+
+    <script>
+      const assignments = {
+        toan: "Giải phương trình bậc ba: x³ - 6x² + 11x - 6 = 0. Sau đó, hãy tìm các nghiệm và vẽ đồ thị của hàm số này.",
+        vatly:
+          "Giải thích nguyên lý hoạt động của động cơ điện xoay chiều và nêu ví dụ về ứng dụng thực tế của nó trong đời sống hàng ngày.",
+        hoa: "Viết phương trình hóa học của phản ứng đốt cháy hoàn toàn một hợp chất hữu cơ chứa C, H, O. Sau đó, tính lượng CO2 và H2O tạo thành khi đốt cháy 10 gam hợp chất này.",
+        nguvan:
+          "Phân tích tính nhân văn và hiện thực trong tác phẩm 'Chí Phèo' của Nam Cao. Hãy chú trọng đến sự phát triển tâm lý của nhân vật chính.",
+        su: "Trình bày nguyên nhân, diễn biến và kết quả của cuộc Chiến tranh thế giới thứ nhất. Hãy nêu rõ các sự kiện chính và vai trò của các cường quốc trong cuộc chiến này.",
+        dia: "Nêu các đặc điểm kinh tế, văn hóa, xã hội của khu vực Đông Nam Á và phân tích ảnh hưởng của chúng đến quá trình phát triển của các quốc gia trong khu vực.",
+        sinh: "Giải thích cơ chế điều hòa hoạt động của các enzym trong cơ thể người và nêu ví dụ minh họa về một enzym cụ thể.",
+        tienganh:
+          "Viết đoạn văn ngắn (khoảng 150-200 từ) về lợi ích của việc học ngoại ngữ đối với sự phát triển cá nhân và nghề nghiệp.",
+        gdcd: "Phân tích vai trò của pháp luật trong việc bảo vệ quyền con người và đảm bảo công bằng xã hội. Hãy nêu ví dụ minh họa cụ thể.",
+        tinhoc:
+          "Viết một đoạn mã JavaScript để tạo một trang web đơn giản có chức năng hiển thị ngày và giờ hiện tại, và cập nhật theo thời gian thực.",
+        gdqp: "Giới thiệu các chiến thuật cơ bản trong chiến đấu của bộ binh hiện đại và giải thích tầm quan trọng của mỗi chiến thuật trong việc đảm bảo thành công trên chiến trường.",
+        gdtc: "Phân tích các yếu tố ảnh hưởng đến hiệu suất tập luyện thể dục và đề xuất các biện pháp cải thiện hiệu suất này.",
+      };
+
+      document.querySelectorAll(".subject").forEach((subject) => {
+        subject.addEventListener("click", function () {
+          const subjectKey = this.getAttribute("data-subject");
+
+          // Ẩn tất cả các môn học
+          document.querySelectorAll(".subject").forEach((el) => {
+            el.style.display = "none";
+          });
+
+          // Hiển thị bài tập của môn được chọn
+          const assignmentContainer = document.getElementById(
+            "assignment-container"
+          );
+          assignmentContainer.innerHTML = `
+            <h3>${this.querySelector(".title").innerText}</h3>
+            <p>${assignments[subjectKey]}</p>
+            <a href="/nopbai" class="btn-submit">Nộp Bài</a>
+            <button id="back-btn" class="btn-submit" style="margin-top: 10px; background-color: #d32f2f;">
+              Quay Lại
+            </button>
+          `;
+          assignmentContainer.style.display = "block";
+
+          // Khi bấm "Quay Lại", hiển thị lại danh sách môn học
+          document
+            .getElementById("back-btn")
+            .addEventListener("click", function () {
+              document.querySelectorAll(".subject").forEach((el) => {
+                el.style.display = "flex";
+              });
+              assignmentContainer.style.display = "none";
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

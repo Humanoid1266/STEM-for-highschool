@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from app.models import Profile
@@ -16,6 +16,8 @@ import string
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
+from .models import AssignmentSubmission
+from django.core.files.storage import default_storage
 
 # Create your views here.
 def home(request):
@@ -55,6 +57,10 @@ def home2(request):
 def home3(request):
     context= {}
     return render(request, 'app/home3.html',context)
+def hocphi(request):
+    context= {}
+    return render(request, 'app/hocphi.html',context)
+
 
 def lienhe(request):
     if request.method == "POST":
@@ -151,6 +157,18 @@ def robotdk(request):
 def maylocnuoc(request):
     context={}
     return render(request, 'app/maylocnuoc.html', context)
+
+def baitapvenha(request):
+    context={}
+    return render(request, 'app/baitapvenha.html', context)
+
+def nopbai(request):
+    context={}
+    return render(request, 'app/nopbai.html', context)
+
+def cauhoi(request):
+    context={}
+    return render(request, 'app/cauhoi.html', context)
 
 def doimatkhau(request):
     if request.method == "POST":
@@ -279,6 +297,30 @@ def khoiphucmatkhau(request):
             error_message = "⚠ Tên đăng nhập hoặc email không đúng."
 
     return render(request, "app/khoiphucmatkhau.html", {"new_password": new_password, "error_message": error_message})
+
+def submit_assignment(request):
+    if request.method == "POST" and request.FILES.get("file"):
+        file = request.FILES["file"]
+        student_name = request.POST.get("student_name", "Unknown")
+        
+        # Lưu file vào database
+        submission = AssignmentSubmission.objects.create(student_name=student_name, file=file)
+        return JsonResponse({"message": "Bài nộp thành công!", "file": submission.file.url})
+
+    return JsonResponse({"error": "Lỗi khi nộp bài!"}, status=400)
+
+def get_submission_status(request):
+    student_name = "Tran Manh Dung"  # Hoặc lấy từ session/user đang đăng nhập
+    submission = Submission.objects.filter(student_name=student_name).first()
+
+    if submission:
+        return JsonResponse({
+            "submitted": True,
+            "file_name": submission.file_name,
+            "last_edited": submission.last_edited.strftime("%Y-%m-%d %H:%M:%S")
+        })
+    else:
+        return JsonResponse({"submitted": False})
 
 
 

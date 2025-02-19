@@ -1,11 +1,10 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="vi">
   <head>
+    {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thông Tin Sinh Viên</title>
-    <link rel="stylesheet" href="{% static 'css/student_profile.css' %}" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
@@ -20,7 +19,6 @@
         flex-direction: column;
       }
 
-      /* Thanh công cụ dính lên trên */
       header {
         position: fixed;
         top: 0;
@@ -35,7 +33,6 @@
         z-index: 1000;
       }
 
-      /* Để tránh nội dung bị che mất bởi header */
       .content {
         margin-top: 100px;
         width: 100%;
@@ -44,13 +41,11 @@
         align-items: center;
       }
 
-      /* Logo */
       .logo {
-        width: 120px;
+        width: 100px;
         height: auto;
       }
 
-      /* Nút Trang Chủ */
       .home-link {
         margin-left: 20px; /* Để nút không dính sát logo */
       }
@@ -70,7 +65,6 @@
         background-color: #e65c00;
       }
 
-      /* Nút Chỉnh Sửa Thông Tin */
       .update-info {
         font-size: 16px;
         font-weight: bold;
@@ -87,7 +81,6 @@
         background-color: #cc5200;
       }
 
-      /* Container chứa thông tin sinh viên */
       .profile-container {
         display: flex;
         justify-content: center;
@@ -96,7 +89,6 @@
         padding: 20px;
       }
 
-      /* Card chứa thông tin */
       .profile-card {
         background: white;
         width: 60%;
@@ -106,14 +98,17 @@
         text-align: center;
       }
 
-      /* Ảnh đại diện */
       .avatar-container {
-        width: 130px;
-        height: 130px;
+        position: relative;
+        width: 150px;
+        height: 150px;
         border-radius: 50%;
         overflow: hidden;
         margin: 0 auto 15px;
         border: 3px solid #ff7700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .avatar {
@@ -122,7 +117,29 @@
         object-fit: cover;
       }
 
-      /* Tiêu đề */
+      /* Nút chọn file */
+      .upload-btn {
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: none;
+      }
+
+      .avatar-container:hover .upload-btn {
+        display: block;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
       h1 {
         color: #333;
         font-size: 26px;
@@ -130,7 +147,6 @@
         font-weight: 600;
       }
 
-      /* Bố cục thông tin theo dạng bảng */
       .profile-info {
         display: table;
         width: 100%;
@@ -153,7 +169,6 @@
         width: 35%;
       }
 
-      /* Responsive */
       @media (max-width: 768px) {
         .profile-card {
           width: 90%;
@@ -166,19 +181,14 @@
   </head>
   <body>
     <header>
-      <!-- Logo FPT -->
       <img
         class="logo"
         src="{% static 'app/images/FPT.png' %}"
         alt="Logo FPT"
       />
-
-      <!-- Nút Trang Chủ -->
       <div class="home-link">
         <a href="{% url 'home' %}" class="home-button">Trang Chủ</a>
       </div>
-
-      <!-- Nút Chỉnh sửa hoặc Đăng nhập -->
       {% if user.is_authenticated %}
       <a href="{% url 'chinhsuathongtin' %}" class="update-info"
         >Chỉnh sửa thông tin</a
@@ -190,17 +200,19 @@
       {% endif %}
     </header>
 
-    <!-- Phần nội dung để tránh bị header che -->
     <div class="content">
       {% if user.is_authenticated %}
       <div class="profile-container">
         <div class="profile-card">
           <div class="avatar-container">
             <img
+              id="avatar-preview"
               class="avatar"
               src="{% static 'app/images/profile.jpg' %}"
               alt="Avatar Sinh Viên"
             />
+            <label for="upload-avatar" class="upload-btn">Chọn ảnh</label>
+            <input type="file" id="upload-avatar" accept="image/*" />
           </div>
           <h1>Thông Tin Sinh Viên</h1>
           <table class="profile-info">
@@ -253,5 +265,20 @@
       </div>
       {% endif %}
     </div>
+
+    <script>
+      document
+        .getElementById("upload-avatar")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              document.getElementById("avatar-preview").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+    </script>
   </body>
 </html>
