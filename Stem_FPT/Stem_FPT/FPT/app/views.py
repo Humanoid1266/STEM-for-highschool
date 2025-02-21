@@ -298,26 +298,35 @@ def khoiphucmatkhau(request):
 
     return render(request, "app/khoiphucmatkhau.html", {"new_password": new_password, "error_message": error_message})
 
+@login_required
 def submit_assignment(request):
     if request.method == "POST" and request.FILES.get("file"):
         file = request.FILES["file"]
-        student_name = request.POST.get("student_name", "Unknown")
+        student_name = request.user.get_full_name()  # Lấy tên từ tài khoản đăng nhập
         
-        # Lưu file vào database
+        # Nếu user chưa có tên, dùng username thay thế
+        if not student_name:
+            student_name = request.user.username
+
+        # Lưu vào database
         submission = AssignmentSubmission.objects.create(student_name=student_name, file=file)
         return JsonResponse({"message": "Bài nộp thành công!", "file": submission.file.url})
 
     return JsonResponse({"error": "Lỗi khi nộp bài!"}, status=400)
 
+@login_required
 def get_submission_status(request):
-    student_name = "Tran Manh Dung"  # Hoặc lấy từ session/user đang đăng nhập
-    submission = Submission.objects.filter(student_name=student_name).first()
+    student_name = request.user.get_full_name()  # Lấy tên từ tài khoản đăng nhập
+    if not student_name:
+        student_name = request.user.username  # Nếu chưa có tên, dùng username
+
+    submission = AssignmentSubmission.objects.filter(student_name=student_name).first()
 
     if submission:
         return JsonResponse({
             "submitted": True,
-            "file_name": submission.file_name,
-            "last_edited": submission.last_edited.strftime("%Y-%m-%d %H:%M:%S")
+            "file_name": submission.file.name,
+            "last_edited": submission.created_at.strftime("%Y-%m-%d %H:%M:%S")
         })
     else:
         return JsonResponse({"submitted": False})

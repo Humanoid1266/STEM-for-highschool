@@ -220,6 +220,71 @@
         }
         return cookieValue;
       }
+      document
+        .getElementById("edit-submission")
+        .addEventListener("click", function () {
+          if (confirm("Bạn có muốn chỉnh sửa bài đã nộp không?")) {
+            document.getElementById("file-upload").click();
+          }
+        });
+
+      document
+        .getElementById("toggle-comments")
+        .addEventListener("click", function () {
+          let commentsBox = document.querySelector(".comments-box");
+          if (
+            commentsBox.style.display === "none" ||
+            commentsBox.style.display === ""
+          ) {
+            commentsBox.style.display = "block";
+          } else {
+            commentsBox.style.display = "none";
+          }
+        });
+
+      document
+        .getElementById("submit-comment")
+        .addEventListener("click", function () {
+          let commentInput = document.getElementById("comment-input");
+          let commentText = commentInput.value.trim();
+          if (commentText !== "") {
+            let commentList = document.getElementById("comment-list");
+            let newComment = document.createElement("div");
+            newComment.className = "comment-item";
+            newComment.textContent = commentText;
+            commentList.appendChild(newComment);
+            commentInput.value = "";
+          } else {
+            alert("Vui lòng nhập nội dung bình luận!");
+          }
+        });
+      document
+        .getElementById("submit-comment")
+        .addEventListener("click", function () {
+          // Kiểm tra trạng thái chấm điểm
+          let gradingStatus = document
+            .querySelector(".status-values p:nth-child(2)")
+            .textContent.trim();
+
+          if (gradingStatus === "Chưa chấm") {
+            alert("Bình luận chỉ được phép khi bài đã được chấm điểm.");
+            return;
+          }
+
+          let commentInput = document.getElementById("comment-input");
+          let commentText = commentInput.value.trim();
+
+          if (commentText !== "") {
+            let commentList = document.getElementById("comment-list");
+            let newComment = document.createElement("div");
+            newComment.className = "comment-item";
+            newComment.textContent = commentText;
+            commentList.appendChild(newComment);
+            commentInput.value = "";
+          } else {
+            alert("Vui lòng nhập nội dung bình luận!");
+          }
+        });
     </script>
   </body>
 </html>

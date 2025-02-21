@@ -33,8 +33,8 @@
 
       /* Chatbox */
       #chatbox {
-        width: 400px;
-        height: 600px;
+        width: 350px;
+        height: 500px;
         position: fixed;
         bottom: 20px;
         left: 20px;
@@ -252,6 +252,7 @@ Lớp 10 năm học 2024 - 2025: 33.500.000 VNĐ/kỳ..."
       const userInput = document.getElementById("user-input");
       const sendBtn = document.getElementById("send-btn");
       const options = document.querySelectorAll(".option");
+      const optionsContainer = document.getElementById("options"); // Thêm container chứa options
       const timestampInit = document.getElementById("timestamp-init");
 
       chatBubble.addEventListener("click", () => {
@@ -263,6 +264,7 @@ Lớp 10 năm học 2024 - 2025: 33.500.000 VNĐ/kỳ..."
       closeChat.addEventListener("click", () => {
         chatbox.style.display = "none";
         chatBubble.style.display = "flex";
+        optionsContainer.style.display = "block"; // Hiện lại options khi đóng chat
       });
 
       sendBtn.addEventListener("click", handleUserMessage);
@@ -279,17 +281,16 @@ Lớp 10 năm học 2024 - 2025: 33.500.000 VNĐ/kỳ..."
 
           // Hiển thị tin nhắn bot và giữ nguyên format HTML
           displayBotMessage(botResponse);
+
+          // Ẩn options sau khi chọn
+          optionsContainer.style.display = "none";
         });
       });
 
       function handleUserMessage() {
         const userMessage = userInput.value.trim();
         if (userMessage) {
-          displayMessage(userMessage, "user");
-          displayBotMessage(
-            `Vui lòng truy cập vào đường link để được hỗ trợ: <a href='http://127.0.0.1:8000/lienhe/' target='_blank' style='color: blue; text-decoration: underline;'>http://127.0.0.1:8000/lienhe/</a>`
-          );
-          userInput.value = "";
+          window.location.href = "http://127.0.0.1:8000/lienhe/";
         }
       }
 
@@ -311,7 +312,6 @@ Lớp 10 năm học 2024 - 2025: 33.500.000 VNĐ/kỳ..."
         const botMessage = document.createElement("div");
         botMessage.classList.add("message", "bot");
 
-        // Dùng innerHTML để giữ nguyên định dạng HTML của text
         botMessage.innerHTML = text;
 
         messagesContainer.appendChild(botMessage);
