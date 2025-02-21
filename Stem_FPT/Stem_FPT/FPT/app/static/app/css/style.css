@@ -7,17 +7,17 @@
 }
 
  .owl-carousel .item:hover{
-    /* border: 1px solid black; */
+    border: 1px solid black;
     transform : scale(1.1);
 }
 
-/* .owl-carousel img{
+.owl-carousel img{
     transition: transform .5s ease;
   }
  .owl-carousel img:hover{
     
     transform : scale(1.25);
-} */
+} 
 
 .owl-next{
  float:right;

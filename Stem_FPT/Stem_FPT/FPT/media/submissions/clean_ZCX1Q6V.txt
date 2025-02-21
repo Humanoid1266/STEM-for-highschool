@@ -1,0 +1,6 @@
+temp
+%temp%
+prefetch
+cleanmgr
+mrt
+sfc /scannow
